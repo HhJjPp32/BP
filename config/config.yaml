@@ -1,0 +1,110 @@
+# =============================================================
+# BP 神经网络项目配置文件
+# 任务：预测中空夹层钢管混凝土（CFDST）柱极限承载力
+# 数据：training_data_BP.csv（670 样本，10 特征）
+# =============================================================
+
+paths:
+  # 数据路径（绝对路径，指向实际数据文件）
+  raw_data: "D:/AI_study/shujukuzhuanhua/training_data_BP.csv"
+  data_dir: "data"
+  processed_data: "data/processed_data.csv"
+  log_dir: "logs"
+  output_dir: "output"
+  model_save_path: "output/best_model.pth"
+  best_params_path: "logs/best_params.json"
+  optuna_db: "logs/optuna_study.db"
+  scaler_path: "output/scaler.pkl"
+  report_path: "output/evaluation_report.txt"
+
+data:
+  target_column: "Nexp/kN"        # 实际目标列名（含斜杠）
+  feature_columns: []             # 空列表 = 自动检测（排除 target）
+  test_size: 0.2
+  random_state: 42
+  # ── 目标变量 log 变换 ──────────────────────────────────────
+  # Nexp/kN 范围 228~15850（std=2703），log1p 变换使 MSE 均匀化
+  # 预测结果会自动 expm1 逆变换回原始尺度再计算指标
+  log_transform_target: true
+
+# BP 神经网络默认架构（use_optuna=False 时使用）
+# 针对 670 样本、10 特征优化：适中规模 + 较强正则化
+model:
+  hidden_layers: [128, 64, 32]   # 三层隐藏层
+  activation: "tanh"             # tanh：工程数据梯度平滑，优于 relu
+  dropout_rate: 0.15             # 略高于默认（小数据集防过拟合）
+  batch_norm: true               # 批归一化加速收敛
+  output_activation: null        # 回归任务无需激活
+
+# 训练超参数（use_optuna=False 时使用）
+# 针对数据特点调优：
+#   - epochs↑ + patience↑：配合早停充分训练
+#   - batch_size↓：670 样本下小 batch 梯度信息更丰富
+#   - lr↓：tanh 激活 + AdamW 收敛更稳定
+#   - weight_decay↑：增强 L2 正则化，防过拟合
+training:
+  epochs: 1000
+  batch_size: 16
+  learning_rate: 0.0005
+  optimizer: "adamw"             # AdamW：自适应学习率 + 解耦 L2 正则
+  weight_decay: 5.0e-4
+  early_stopping_patience: 80   # 验证集连续 80 轮不改善则停止
+  lr_scheduler: true
+  lr_scheduler_patience: 30
+  lr_scheduler_factor: 0.5
+  min_lr: 1.0e-7
+
+# 交叉验证
+cross_validation:
+  n_splits: 5
+  shuffle: true
+  random_state: 42
+
+# Optuna 超参数优化
+# optuna_objective: "cov_rmse" → 联合优化 COV（权重 0.5）+ RMSE（权重 0.5）
+optuna:
+  use_optuna: false
+  n_trials: 150
+  timeout: 3600
+  study_name: "bp_cfdst_study"
+  direction: "minimize"
+  optuna_objective: "cov_rmse"   # cov_rmse | rmse（联合优化 COV 和 RMSE）
+  search_space:
+    n_layers:
+      low: 2
+      high: 4                    # 上限降低（670 样本不宜过深）
+    n_units:
+      choices: [32, 64, 128, 256]  # 去掉 512（过大会过拟合）
+    learning_rate:
+      low: 5.0e-5
+      high: 3.0e-3
+      log: true
+    dropout_rate:
+      low: 0.0
+      high: 0.3
+    batch_size:
+      choices: [8, 16, 32]
+    weight_decay:
+      low: 1.0e-5
+      high: 1.0e-3
+      log: true
+    activation:
+      choices: ["relu", "tanh", "leaky_relu"]
+    optimizer:
+      choices: ["adam", "adamw"]  # 去掉 sgd（收敛慢）
+
+# 评估指标
+evaluation:
+  metrics: ["r2", "rmse", "mae", "mape", "cov"]
+
+# 可视化
+visualization:
+  dpi: 150
+  figure_size: [8, 6]
+  style: "seaborn-v0_8-whitegrid"
+
+# 日志
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  log_file: "logs/training.log"

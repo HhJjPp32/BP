@@ -1,0 +1,14 @@
+{
+    "learning_rate": 0.002223815833683,
+    "dropout_rate": 0.2531497029232353,
+    "batch_size": 32,
+    "weight_decay": 2.300711477010036e-05,
+    "activation": "tanh",
+    "optimizer": "adam",
+    "hidden_layers": [
+        256,
+        256,
+        256
+    ],
+    "batch_norm": true
+}

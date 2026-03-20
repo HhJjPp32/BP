@@ -1,0 +1,1312 @@
+2026-03-20 18:25:00,289 - __main__ - INFO - ==============================================================
+2026-03-20 18:25:00,289 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 18:25:00,290 - __main__ - INFO - ==============================================================
+2026-03-20 18:25:00,292 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 18:25:00,293 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 18:25:00,293 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 18:25:00,293 - src.data_loader - INFO - =======================================================
+2026-03-20 18:25:00,294 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 18:25:00,295 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 18:25:00,310 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 18:25:00,310 - src.data_loader - INFO - =======================================================
+2026-03-20 18:25:00,311 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 18:25:00,312 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 18:25:00,312 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 18:25:00,313 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 18:25:00,317 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 18:25:00,319 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 18:25:00,320 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 18:25:00,340 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 18:25:00,341 - src.model_trainer - INFO - use_optuna=True，启动 Optuna 搜索...
+2026-03-20 18:34:33,085 - __main__ - INFO - ==============================================================
+2026-03-20 18:34:33,085 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 18:34:33,085 - __main__ - INFO - ==============================================================
+2026-03-20 18:34:33,092 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 18:34:33,092 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 18:34:33,092 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 18:34:33,092 - src.data_loader - INFO - =======================================================
+2026-03-20 18:34:33,093 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 18:34:33,094 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 18:34:33,111 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 18:34:33,111 - src.data_loader - INFO - =======================================================
+2026-03-20 18:34:33,115 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 18:34:33,116 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 18:34:33,116 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 18:34:33,118 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 18:34:33,121 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 18:34:33,122 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 18:34:33,124 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 18:34:33,141 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 18:34:33,141 - src.model_trainer - INFO - use_optuna=True，启动 Optuna 搜索...
+2026-03-20 18:35:01,128 - __main__ - INFO - ==============================================================
+2026-03-20 18:35:01,128 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 18:35:01,128 - __main__ - INFO - ==============================================================
+2026-03-20 18:35:01,131 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 18:35:01,131 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 18:35:01,132 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 18:35:01,132 - src.data_loader - INFO - =======================================================
+2026-03-20 18:35:01,132 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 18:35:01,132 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 18:35:01,142 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 18:35:01,144 - src.data_loader - INFO - =======================================================
+2026-03-20 18:35:01,145 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 18:35:01,145 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 18:35:01,145 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 18:35:01,146 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 18:35:01,150 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 18:35:01,151 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 18:35:01,153 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 18:35:01,173 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 18:35:01,173 - src.model_trainer - INFO - use_optuna=True，启动 Optuna 搜索...
+2026-03-20 18:36:28,145 - __main__ - INFO - ==============================================================
+2026-03-20 18:36:28,145 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 18:36:28,147 - __main__ - INFO - ==============================================================
+2026-03-20 18:36:28,149 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 18:36:28,150 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 18:36:28,150 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 18:36:28,150 - src.data_loader - INFO - =======================================================
+2026-03-20 18:36:28,150 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 18:36:28,150 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 18:36:28,160 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 18:36:28,160 - src.data_loader - INFO - =======================================================
+2026-03-20 18:36:28,161 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 18:36:28,161 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 18:36:28,161 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 18:36:28,162 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 18:36:28,164 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 18:36:28,164 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 18:36:28,165 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 18:36:28,186 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 18:36:28,186 - src.model_trainer - INFO - use_optuna=True，启动 Optuna 搜索...
+2026-03-20 18:36:59,010 - __main__ - INFO - ==============================================================
+2026-03-20 18:36:59,010 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 18:36:59,010 - __main__ - INFO - ==============================================================
+2026-03-20 18:36:59,012 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 18:36:59,012 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 18:36:59,012 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 18:36:59,016 - src.data_loader - INFO - =======================================================
+2026-03-20 18:36:59,016 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 18:36:59,016 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 18:36:59,029 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 18:36:59,029 - src.data_loader - INFO - =======================================================
+2026-03-20 18:36:59,030 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 18:36:59,030 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 18:36:59,030 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 18:36:59,031 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 18:36:59,033 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 18:36:59,034 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 18:36:59,035 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 18:36:59,050 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 18:36:59,050 - src.model_trainer - INFO - use_optuna=True，启动 Optuna 搜索...
+2026-03-20 18:37:10,932 - src.model_trainer - INFO - Epoch   100 | Train=0.374781 | Val=0.134477 | LR=1.54e-03
+2026-03-20 18:37:20,668 - src.model_trainer - INFO - Epoch   200 | Train=0.275576 | Val=0.042975 | LR=7.70e-04
+2026-03-20 18:37:30,952 - src.model_trainer - INFO - Epoch   300 | Train=0.175967 | Val=0.037899 | LR=1.92e-04
+2026-03-20 18:37:35,172 - src.model_trainer - INFO - 早停于 epoch 346，最佳验证 MSE=0.022372
+2026-03-20 18:37:44,837 - src.model_trainer - INFO - Epoch   100 | Train=0.301937 | Val=0.091278 | LR=1.54e-03
+2026-03-20 18:37:54,883 - src.model_trainer - INFO - Epoch   200 | Train=0.232683 | Val=0.042711 | LR=7.70e-04
+2026-03-20 18:38:03,619 - src.model_trainer - INFO - 早停于 epoch 290，最佳验证 MSE=0.015647
+2026-03-20 18:38:14,083 - src.model_trainer - INFO - Epoch   100 | Train=0.313419 | Val=0.172457 | LR=1.54e-03
+2026-03-20 18:38:23,904 - src.model_trainer - INFO - Epoch   200 | Train=0.181449 | Val=0.068040 | LR=1.54e-03
+2026-03-20 18:38:33,635 - src.model_trainer - INFO - Epoch   300 | Train=0.185062 | Val=0.055189 | LR=1.92e-04
+2026-03-20 18:38:37,055 - src.model_trainer - INFO - 早停于 epoch 334，最佳验证 MSE=0.029331
+2026-03-20 18:38:46,818 - src.model_trainer - INFO - Epoch   100 | Train=0.310131 | Val=0.105289 | LR=1.54e-03
+2026-03-20 18:38:56,288 - src.model_trainer - INFO - Epoch   200 | Train=0.212271 | Val=0.040517 | LR=1.54e-03
+2026-03-20 18:39:06,567 - src.model_trainer - INFO - Epoch   300 | Train=0.182805 | Val=0.031968 | LR=3.85e-04
+2026-03-20 18:39:16,153 - src.model_trainer - INFO - Epoch   400 | Train=0.189550 | Val=0.034014 | LR=9.62e-05
+2026-03-20 18:39:19,321 - src.model_trainer - INFO - 早停于 epoch 432，最佳验证 MSE=0.016016
+2026-03-20 18:39:29,024 - src.model_trainer - INFO - Epoch   100 | Train=0.347369 | Val=0.114980 | LR=1.54e-03
+2026-03-20 18:39:38,876 - src.model_trainer - INFO - Epoch   200 | Train=0.228706 | Val=0.037104 | LR=7.70e-04
+2026-03-20 18:39:46,289 - src.model_trainer - INFO - 早停于 epoch 279，最佳验证 MSE=0.023966
+2026-03-20 18:40:00,595 - src.model_trainer - INFO - Epoch   100 | Train=1.117362 | Val=0.700805 | LR=6.39e-05
+2026-03-20 18:40:04,597 - src.model_trainer - INFO - 早停于 epoch 131，最佳验证 MSE=0.277796
+2026-03-20 18:40:17,873 - src.model_trainer - INFO - Epoch   100 | Train=1.189008 | Val=0.568658 | LR=6.39e-05
+2026-03-20 18:40:30,777 - src.model_trainer - INFO - Epoch   200 | Train=1.047828 | Val=0.515657 | LR=1.60e-05
+2026-03-20 18:40:44,499 - src.model_trainer - INFO - Epoch   300 | Train=0.829074 | Val=0.486993 | LR=2.00e-06
+2026-03-20 18:40:45,909 - src.model_trainer - INFO - 早停于 epoch 310，最佳验证 MSE=0.324954
+2026-03-20 18:40:59,271 - src.model_trainer - INFO - Epoch   100 | Train=0.962151 | Val=0.849527 | LR=6.39e-05
+2026-03-20 18:41:03,425 - src.model_trainer - INFO - 早停于 epoch 130，最佳验证 MSE=0.204844
+2026-03-20 18:41:16,646 - src.model_trainer - INFO - Epoch   100 | Train=1.097697 | Val=0.383700 | LR=6.39e-05
+2026-03-20 18:41:20,434 - src.model_trainer - INFO - 早停于 epoch 129，最佳验证 MSE=0.251765
+2026-03-20 18:41:34,161 - src.model_trainer - INFO - Epoch   100 | Train=1.135471 | Val=0.580305 | LR=6.39e-05
+2026-03-20 18:41:38,140 - src.model_trainer - INFO - 早停于 epoch 130，最佳验证 MSE=0.266288
+2026-03-20 18:41:43,898 - src.model_trainer - INFO - Epoch   100 | Train=0.206008 | Val=0.052667 | LR=1.68e-03
+2026-03-20 18:41:50,197 - src.model_trainer - INFO - Epoch   200 | Train=0.131710 | Val=0.027746 | LR=4.20e-04
+2026-03-20 18:41:57,768 - src.model_trainer - INFO - Epoch   300 | Train=0.101267 | Val=0.027865 | LR=1.05e-04
+2026-03-20 18:41:58,620 - src.model_trainer - INFO - 早停于 epoch 308，最佳验证 MSE=0.020196
+2026-03-20 18:42:07,930 - src.model_trainer - INFO - Epoch   100 | Train=0.190223 | Val=0.040364 | LR=1.68e-03
+2026-03-20 18:42:13,377 - src.model_trainer - INFO - Epoch   200 | Train=0.134357 | Val=0.019646 | LR=8.40e-04
+2026-03-20 18:42:17,237 - src.model_trainer - INFO - 早停于 epoch 267，最佳验证 MSE=0.013598
+2026-03-20 18:42:23,530 - src.model_trainer - INFO - Epoch   100 | Train=0.237552 | Val=0.159352 | LR=1.68e-03
+2026-03-20 18:42:29,038 - src.model_trainer - INFO - Epoch   200 | Train=0.128651 | Val=0.040821 | LR=4.20e-04
+2026-03-20 18:42:31,004 - src.model_trainer - INFO - 早停于 epoch 237，最佳验证 MSE=0.035278
+2026-03-20 18:42:36,491 - src.model_trainer - INFO - Epoch   100 | Train=0.216990 | Val=0.048818 | LR=1.68e-03
+2026-03-20 18:42:42,519 - src.model_trainer - INFO - Epoch   200 | Train=0.149332 | Val=0.032196 | LR=8.40e-04
+2026-03-20 18:42:48,357 - src.model_trainer - INFO - Epoch   300 | Train=0.121549 | Val=0.017422 | LR=2.10e-04
+2026-03-20 18:42:54,373 - src.model_trainer - INFO - Epoch   400 | Train=0.113657 | Val=0.017961 | LR=2.62e-05
+2026-03-20 18:42:54,654 - src.model_trainer - INFO - 早停于 epoch 405，最佳验证 MSE=0.012689
+2026-03-20 18:43:00,595 - src.model_trainer - INFO - Epoch   100 | Train=0.207664 | Val=0.060333 | LR=1.68e-03
+2026-03-20 18:43:06,519 - src.model_trainer - INFO - Epoch   200 | Train=0.125272 | Val=0.024762 | LR=8.40e-04
+2026-03-20 18:43:13,240 - src.model_trainer - INFO - Epoch   300 | Train=0.121255 | Val=0.034075 | LR=1.05e-04
+2026-03-20 18:43:13,534 - src.model_trainer - INFO - 早停于 epoch 305，最佳验证 MSE=0.019213
+2026-03-20 18:43:26,389 - src.model_trainer - INFO - Epoch   100 | Train=0.538486 | Val=0.234022 | LR=6.85e-04
+2026-03-20 18:43:39,304 - src.model_trainer - INFO - Epoch   200 | Train=0.336935 | Val=0.163611 | LR=3.43e-04
+2026-03-20 18:43:46,942 - src.model_trainer - INFO - 早停于 epoch 260，最佳验证 MSE=0.048415
+2026-03-20 18:44:03,562 - src.model_trainer - INFO - Epoch   100 | Train=0.580739 | Val=0.207661 | LR=6.85e-04
+2026-03-20 18:44:19,452 - src.model_trainer - INFO - Epoch   200 | Train=0.409736 | Val=0.124291 | LR=3.43e-04
+2026-03-20 18:44:38,295 - src.model_trainer - INFO - Epoch   300 | Train=0.332282 | Val=0.096491 | LR=8.56e-05
+2026-03-20 18:44:53,081 - src.model_trainer - INFO - 早停于 epoch 365，最佳验证 MSE=0.049404
+2026-03-20 18:45:12,447 - src.model_trainer - INFO - Epoch   100 | Train=0.588314 | Val=0.226213 | LR=3.43e-04
+2026-03-20 18:45:20,361 - src.model_trainer - INFO - 早停于 epoch 144，最佳验证 MSE=0.116437
+2026-03-20 18:45:38,738 - src.model_trainer - INFO - Epoch   100 | Train=0.524043 | Val=0.261758 | LR=6.85e-04
+2026-03-20 18:45:58,186 - src.model_trainer - INFO - Epoch   200 | Train=0.383388 | Val=0.182707 | LR=1.71e-04
+2026-03-20 18:46:05,642 - src.model_trainer - INFO - 早停于 epoch 245，最佳验证 MSE=0.094512
+2026-03-20 18:46:22,501 - src.model_trainer - INFO - Epoch   100 | Train=0.633235 | Val=0.273759 | LR=1.71e-04
+2026-03-20 18:46:36,054 - src.model_trainer - INFO - Epoch   200 | Train=0.634841 | Val=0.170572 | LR=8.56e-05
+2026-03-20 18:46:49,868 - src.model_trainer - INFO - Epoch   300 | Train=0.425792 | Val=0.285832 | LR=4.28e-05
+2026-03-20 18:46:58,199 - src.model_trainer - INFO - 早停于 epoch 359，最佳验证 MSE=0.130666
+2026-03-20 18:47:11,822 - src.model_trainer - INFO - Epoch   100 | Train=0.298897 | Val=0.131295 | LR=3.00e-03
+2026-03-20 18:47:20,769 - src.model_trainer - INFO - 早停于 epoch 166，最佳验证 MSE=0.048915
+2026-03-20 18:47:34,254 - src.model_trainer - INFO - Epoch   100 | Train=0.305068 | Val=0.043686 | LR=1.50e-03
+2026-03-20 18:47:43,107 - src.model_trainer - INFO - 早停于 epoch 165，最佳验证 MSE=0.026835
+2026-03-20 18:47:56,386 - src.model_trainer - INFO - Epoch   100 | Train=0.294956 | Val=0.098749 | LR=3.00e-03
+2026-03-20 18:48:10,783 - src.model_trainer - INFO - Epoch   200 | Train=0.264637 | Val=0.087582 | LR=3.75e-04
+2026-03-20 18:48:15,986 - src.model_trainer - INFO - 早停于 epoch 240，最佳验证 MSE=0.052784
+2026-03-20 18:48:29,575 - src.model_trainer - INFO - Epoch   100 | Train=0.287712 | Val=0.068923 | LR=3.00e-03
+2026-03-20 18:48:42,994 - src.model_trainer - INFO - Epoch   200 | Train=0.184043 | Val=0.073773 | LR=3.75e-04
+2026-03-20 18:48:45,469 - src.model_trainer - INFO - 早停于 epoch 218，最佳验证 MSE=0.032289
+2026-03-20 18:48:58,920 - src.model_trainer - INFO - Epoch   100 | Train=0.286091 | Val=0.193987 | LR=3.00e-03
+2026-03-20 18:49:08,803 - src.model_trainer - INFO - 早停于 epoch 168，最佳验证 MSE=0.047424
+2026-03-20 18:49:18,389 - src.model_trainer - INFO - Epoch   100 | Train=0.355601 | Val=0.061878 | LR=7.88e-04
+2026-03-20 18:49:26,399 - src.model_trainer - INFO - Epoch   200 | Train=0.208576 | Val=0.034444 | LR=3.94e-04
+2026-03-20 18:49:33,143 - src.model_trainer - INFO - Epoch   300 | Train=0.223118 | Val=0.037082 | LR=1.97e-04
+2026-03-20 18:49:40,050 - src.model_trainer - INFO - Epoch   400 | Train=0.232208 | Val=0.036432 | LR=4.93e-05
+2026-03-20 18:49:41,444 - src.model_trainer - INFO - 早停于 epoch 420，最佳验证 MSE=0.030332
+2026-03-20 18:49:48,346 - src.model_trainer - INFO - Epoch   100 | Train=0.370111 | Val=0.040109 | LR=7.88e-04
+2026-03-20 18:49:55,435 - src.model_trainer - INFO - Epoch   200 | Train=0.233388 | Val=0.014703 | LR=3.94e-04
+2026-03-20 18:50:01,147 - src.model_trainer - INFO - 早停于 epoch 288，最佳验证 MSE=0.014700
+2026-03-20 18:50:07,714 - src.model_trainer - INFO - Epoch   100 | Train=0.326076 | Val=0.119254 | LR=7.88e-04
+2026-03-20 18:50:13,208 - src.model_trainer - INFO - 早停于 epoch 183，最佳验证 MSE=0.050965
+2026-03-20 18:50:19,937 - src.model_trainer - INFO - Epoch   100 | Train=0.359481 | Val=0.034124 | LR=7.88e-04
+2026-03-20 18:50:26,618 - src.model_trainer - INFO - Epoch   200 | Train=0.257850 | Val=0.051088 | LR=7.88e-04
+2026-03-20 18:50:33,111 - src.model_trainer - INFO - Epoch   300 | Train=0.250187 | Val=0.019871 | LR=1.97e-04
+2026-03-20 18:50:36,889 - src.model_trainer - INFO - 早停于 epoch 358，最佳验证 MSE=0.015396
+2026-03-20 18:50:44,064 - src.model_trainer - INFO - Epoch   100 | Train=0.332584 | Val=0.050526 | LR=7.88e-04
+2026-03-20 18:50:50,849 - src.model_trainer - INFO - Epoch   200 | Train=0.214561 | Val=0.039470 | LR=7.88e-04
+2026-03-20 18:50:57,650 - src.model_trainer - INFO - Epoch   300 | Train=0.195150 | Val=0.030830 | LR=9.85e-05
+2026-03-20 18:50:57,934 - src.model_trainer - INFO - 早停于 epoch 304，最佳验证 MSE=0.026447
+2026-03-20 18:51:00,899 - src.model_trainer - INFO - Epoch   100 | Train=0.705212 | Val=0.172814 | LR=5.26e-04
+2026-03-20 18:51:03,643 - src.model_trainer - INFO - Epoch   200 | Train=0.407221 | Val=0.089480 | LR=2.63e-04
+2026-03-20 18:51:05,442 - src.model_trainer - INFO - 早停于 epoch 267，最佳验证 MSE=0.052131
+2026-03-20 18:51:08,382 - src.model_trainer - INFO - Epoch   100 | Train=0.691402 | Val=0.217858 | LR=5.26e-04
+2026-03-20 18:51:11,394 - src.model_trainer - INFO - Epoch   200 | Train=0.482591 | Val=0.075422 | LR=5.26e-04
+2026-03-20 18:51:14,094 - src.model_trainer - INFO - Epoch   300 | Train=0.293853 | Val=0.047126 | LR=5.26e-04
+2026-03-20 18:51:16,824 - src.model_trainer - INFO - Epoch   400 | Train=0.257871 | Val=0.027312 | LR=5.26e-04
+2026-03-20 18:51:19,608 - src.model_trainer - INFO - Epoch   500 | Train=0.230690 | Val=0.021268 | LR=2.63e-04
+2026-03-20 18:51:22,349 - src.model_trainer - INFO - Epoch   600 | Train=0.232435 | Val=0.020181 | LR=6.57e-05
+2026-03-20 18:51:25,115 - src.model_trainer - INFO - Epoch   700 | Train=0.221786 | Val=0.016727 | LR=1.64e-05
+2026-03-20 18:51:26,696 - src.model_trainer - INFO - 早停于 epoch 754，最佳验证 MSE=0.014715
+2026-03-20 18:51:29,941 - src.model_trainer - INFO - Epoch   100 | Train=0.790469 | Val=0.231004 | LR=5.26e-04
+2026-03-20 18:51:34,376 - src.model_trainer - INFO - Epoch   200 | Train=0.487502 | Val=0.111935 | LR=5.26e-04
+2026-03-20 18:51:38,263 - src.model_trainer - INFO - Epoch   300 | Train=0.381666 | Val=0.077468 | LR=6.57e-05
+2026-03-20 18:51:38,695 - src.model_trainer - INFO - 早停于 epoch 314，最佳验证 MSE=0.062861
+2026-03-20 18:51:41,862 - src.model_trainer - INFO - Epoch   100 | Train=0.876694 | Val=0.139827 | LR=5.26e-04
+2026-03-20 18:51:44,621 - src.model_trainer - INFO - Epoch   200 | Train=0.453323 | Val=0.071258 | LR=5.26e-04
+2026-03-20 18:51:47,333 - src.model_trainer - INFO - Epoch   300 | Train=0.281484 | Val=0.028226 | LR=2.63e-04
+2026-03-20 18:51:50,111 - src.model_trainer - INFO - Epoch   400 | Train=0.279654 | Val=0.023073 | LR=1.31e-04
+2026-03-20 18:51:52,462 - src.model_trainer - INFO - 早停于 epoch 486，最佳验证 MSE=0.019211
+2026-03-20 18:51:55,231 - src.model_trainer - INFO - Epoch   100 | Train=0.766360 | Val=0.200042 | LR=5.26e-04
+2026-03-20 18:51:58,099 - src.model_trainer - INFO - Epoch   200 | Train=0.405273 | Val=0.105840 | LR=5.26e-04
+2026-03-20 18:52:00,941 - src.model_trainer - INFO - Epoch   300 | Train=0.310148 | Val=0.081112 | LR=5.26e-04
+2026-03-20 18:52:03,802 - src.model_trainer - INFO - Epoch   400 | Train=0.229783 | Val=0.049377 | LR=6.57e-05
+2026-03-20 18:52:03,914 - src.model_trainer - INFO - 早停于 epoch 404，最佳验证 MSE=0.041018
+2026-03-20 18:52:08,833 - src.model_trainer - INFO - Epoch   100 | Train=4.657922 | Val=0.877278 | LR=6.34e-05
+2026-03-20 18:52:13,818 - src.model_trainer - INFO - Epoch   200 | Train=2.352295 | Val=0.754489 | LR=3.17e-05
+2026-03-20 18:52:19,042 - src.model_trainer - INFO - Epoch   300 | Train=1.791961 | Val=0.690856 | LR=1.59e-05
+2026-03-20 18:52:23,653 - src.model_trainer - INFO - 早停于 epoch 394，最佳验证 MSE=0.534274
+2026-03-20 18:52:28,581 - src.model_trainer - INFO - Epoch   100 | Train=4.943307 | Val=1.181600 | LR=6.34e-05
+2026-03-20 18:52:33,651 - src.model_trainer - INFO - Epoch   200 | Train=1.975810 | Val=0.735133 | LR=6.34e-05
+2026-03-20 18:52:38,715 - src.model_trainer - INFO - 早停于 epoch 299，最佳验证 MSE=0.608792
+2026-03-20 18:52:43,875 - src.model_trainer - INFO - Epoch   100 | Train=4.210130 | Val=0.927300 | LR=6.34e-05
+2026-03-20 18:52:48,817 - src.model_trainer - INFO - Epoch   200 | Train=2.649766 | Val=0.784505 | LR=1.59e-05
+2026-03-20 18:52:53,569 - src.model_trainer - INFO - Epoch   300 | Train=2.347163 | Val=0.972576 | LR=3.96e-06
+2026-03-20 18:52:54,516 - src.model_trainer - INFO - 早停于 epoch 321，最佳验证 MSE=0.666471
+2026-03-20 18:52:59,205 - src.model_trainer - INFO - Epoch   100 | Train=4.333730 | Val=0.757248 | LR=6.34e-05
+2026-03-20 18:53:04,672 - src.model_trainer - INFO - Epoch   200 | Train=2.313689 | Val=0.765794 | LR=1.59e-05
+2026-03-20 18:53:05,628 - src.model_trainer - INFO - 早停于 epoch 217，最佳验证 MSE=0.579463
+2026-03-20 18:53:10,647 - src.model_trainer - INFO - Epoch   100 | Train=4.330438 | Val=1.051401 | LR=6.34e-05
+2026-03-20 18:53:15,458 - src.model_trainer - INFO - Epoch   200 | Train=2.041489 | Val=0.835004 | LR=6.34e-05
+2026-03-20 18:53:21,185 - src.model_trainer - INFO - Epoch   300 | Train=1.658571 | Val=0.723738 | LR=7.93e-06
+2026-03-20 18:53:21,842 - src.model_trainer - INFO - 早停于 epoch 312，最佳验证 MSE=0.568163
+2026-03-20 18:53:27,391 - src.model_trainer - INFO - Epoch   100 | Train=0.319576 | Val=0.050265 | LR=3.03e-04
+2026-03-20 18:53:31,619 - src.model_trainer - INFO - Epoch   200 | Train=0.284955 | Val=0.045009 | LR=7.57e-05
+2026-03-20 18:53:32,109 - src.model_trainer - INFO - 早停于 epoch 213，最佳验证 MSE=0.032138
+2026-03-20 18:53:35,903 - src.model_trainer - INFO - Epoch   100 | Train=0.384923 | Val=0.084960 | LR=6.05e-04
+2026-03-20 18:53:38,951 - src.model_trainer - INFO - 早停于 epoch 182，最佳验证 MSE=0.026497
+2026-03-20 18:53:42,621 - src.model_trainer - INFO - Epoch   100 | Train=0.339772 | Val=0.089853 | LR=6.05e-04
+2026-03-20 18:53:46,221 - src.model_trainer - INFO - Epoch   200 | Train=0.252965 | Val=0.044946 | LR=6.05e-04
+2026-03-20 18:53:48,766 - src.model_trainer - INFO - 早停于 epoch 271，最佳验证 MSE=0.031106
+2026-03-20 18:53:52,686 - src.model_trainer - INFO - Epoch   100 | Train=0.345641 | Val=0.043611 | LR=6.05e-04
+2026-03-20 18:53:56,581 - src.model_trainer - INFO - Epoch   200 | Train=0.276456 | Val=0.049935 | LR=1.51e-04
+2026-03-20 18:53:59,963 - src.model_trainer - INFO - 早停于 epoch 295，最佳验证 MSE=0.026123
+2026-03-20 18:54:03,476 - src.model_trainer - INFO - Epoch   100 | Train=0.418995 | Val=0.059001 | LR=6.05e-04
+2026-03-20 18:54:07,102 - src.model_trainer - INFO - Epoch   200 | Train=0.225383 | Val=0.036162 | LR=1.51e-04
+2026-03-20 18:54:10,697 - src.model_trainer - INFO - Epoch   300 | Train=0.209365 | Val=0.032975 | LR=1.89e-05
+2026-03-20 18:54:14,298 - src.model_trainer - INFO - Epoch   400 | Train=0.245282 | Val=0.030581 | LR=2.36e-06
+2026-03-20 18:54:17,643 - src.model_trainer - INFO - 早停于 epoch 489，最佳验证 MSE=0.024053
+2026-03-20 18:54:23,696 - src.model_trainer - INFO - Epoch   100 | Train=1.989420 | Val=0.627295 | LR=6.32e-04
+2026-03-20 18:54:29,554 - src.model_trainer - INFO - Epoch   200 | Train=0.980567 | Val=0.281867 | LR=6.32e-04
+2026-03-20 18:54:35,074 - src.model_trainer - INFO - Epoch   300 | Train=0.693362 | Val=0.096288 | LR=6.32e-04
+2026-03-20 18:54:40,935 - src.model_trainer - INFO - Epoch   400 | Train=0.472847 | Val=0.063284 | LR=6.32e-04
+2026-03-20 18:54:44,359 - src.model_trainer - INFO - 早停于 epoch 454，最佳验证 MSE=0.046440
+2026-03-20 18:54:50,474 - src.model_trainer - INFO - Epoch   100 | Train=1.741222 | Val=0.524945 | LR=6.32e-04
+2026-03-20 18:54:56,421 - src.model_trainer - INFO - Epoch   200 | Train=1.143935 | Val=0.334429 | LR=1.58e-04
+2026-03-20 18:55:02,467 - src.model_trainer - INFO - Epoch   300 | Train=1.142754 | Val=0.320165 | LR=7.90e-05
+2026-03-20 18:55:05,725 - src.model_trainer - INFO - 早停于 epoch 353，最佳验证 MSE=0.219838
+2026-03-20 18:55:11,729 - src.model_trainer - INFO - Epoch   100 | Train=1.554267 | Val=0.407074 | LR=6.32e-04
+2026-03-20 18:55:17,484 - src.model_trainer - INFO - Epoch   200 | Train=0.952349 | Val=0.148184 | LR=6.32e-04
+2026-03-20 18:55:22,940 - src.model_trainer - INFO - Epoch   300 | Train=0.885734 | Val=0.067714 | LR=1.58e-04
+2026-03-20 18:55:28,883 - src.model_trainer - INFO - 早停于 epoch 398，最佳验证 MSE=0.063693
+2026-03-20 18:55:35,151 - src.model_trainer - INFO - Epoch   100 | Train=1.843850 | Val=0.639671 | LR=6.32e-04
+2026-03-20 18:55:40,979 - src.model_trainer - INFO - Epoch   200 | Train=1.022172 | Val=0.292219 | LR=6.32e-04
+2026-03-20 18:55:47,021 - src.model_trainer - INFO - Epoch   300 | Train=0.568223 | Val=0.151007 | LR=3.16e-04
+2026-03-20 18:55:53,369 - src.model_trainer - INFO - Epoch   400 | Train=0.483553 | Val=0.108488 | LR=7.90e-05
+2026-03-20 18:55:55,004 - src.model_trainer - INFO - 早停于 epoch 427，最佳验证 MSE=0.088304
+2026-03-20 18:56:01,298 - src.model_trainer - INFO - Epoch   100 | Train=1.859858 | Val=0.618721 | LR=6.32e-04
+2026-03-20 18:56:07,475 - src.model_trainer - INFO - Epoch   200 | Train=0.892826 | Val=0.278283 | LR=6.32e-04
+2026-03-20 18:56:13,450 - src.model_trainer - INFO - Epoch   300 | Train=0.763489 | Val=0.140642 | LR=3.16e-04
+2026-03-20 18:56:19,354 - src.model_trainer - INFO - Epoch   400 | Train=0.633094 | Val=0.126481 | LR=7.90e-05
+2026-03-20 18:56:25,542 - src.model_trainer - INFO - Epoch   500 | Train=0.590786 | Val=0.106779 | LR=3.95e-05
+2026-03-20 18:56:26,953 - src.model_trainer - INFO - 早停于 epoch 524，最佳验证 MSE=0.069618
+2026-03-20 18:56:33,296 - src.model_trainer - INFO - Epoch   100 | Train=0.205112 | Val=0.033531 | LR=2.90e-03
+2026-03-20 18:56:38,408 - src.model_trainer - INFO - 早停于 epoch 184，最佳验证 MSE=0.024422
+2026-03-20 18:56:44,377 - src.model_trainer - INFO - Epoch   100 | Train=0.173487 | Val=0.042505 | LR=2.90e-03
+2026-03-20 18:56:50,296 - src.model_trainer - INFO - Epoch   200 | Train=0.145238 | Val=0.021527 | LR=3.63e-04
+2026-03-20 18:56:51,351 - src.model_trainer - INFO - 早停于 epoch 218，最佳验证 MSE=0.013487
+2026-03-20 18:56:57,227 - src.model_trainer - INFO - Epoch   100 | Train=0.204143 | Val=0.067793 | LR=1.45e-03
+2026-03-20 18:57:02,989 - src.model_trainer - INFO - Epoch   200 | Train=0.143929 | Val=0.053208 | LR=3.63e-04
+2026-03-20 18:57:06,608 - src.model_trainer - INFO - 早停于 epoch 264，最佳验证 MSE=0.033847
+2026-03-20 18:57:12,873 - src.model_trainer - INFO - Epoch   100 | Train=0.161168 | Val=0.064613 | LR=2.90e-03
+2026-03-20 18:57:18,891 - src.model_trainer - INFO - Epoch   200 | Train=0.148890 | Val=0.020671 | LR=7.25e-04
+2026-03-20 18:57:20,655 - src.model_trainer - INFO - 早停于 epoch 230，最佳验证 MSE=0.014600
+2026-03-20 18:57:26,675 - src.model_trainer - INFO - Epoch   100 | Train=0.189468 | Val=0.111995 | LR=2.90e-03
+2026-03-20 18:57:32,692 - src.model_trainer - INFO - Epoch   200 | Train=0.152441 | Val=0.037782 | LR=1.45e-03
+2026-03-20 18:57:36,935 - src.model_trainer - INFO - 早停于 epoch 272，最佳验证 MSE=0.020494
+2026-03-20 18:57:46,778 - src.model_trainer - INFO - Epoch   100 | Train=0.347069 | Val=0.123795 | LR=1.58e-03
+2026-03-20 18:57:56,223 - src.model_trainer - INFO - Epoch   200 | Train=0.217683 | Val=0.053110 | LR=7.88e-04
+2026-03-20 18:58:05,667 - src.model_trainer - INFO - 早停于 epoch 294，最佳验证 MSE=0.027651
+2026-03-20 18:58:15,298 - src.model_trainer - INFO - Epoch   100 | Train=0.327244 | Val=0.112380 | LR=1.58e-03
+2026-03-20 18:58:25,124 - src.model_trainer - INFO - Epoch   200 | Train=0.244997 | Val=0.071092 | LR=3.94e-04
+2026-03-20 18:58:30,286 - src.model_trainer - INFO - 早停于 epoch 252，最佳验证 MSE=0.036589
+2026-03-20 18:58:40,008 - src.model_trainer - INFO - Epoch   100 | Train=0.318240 | Val=0.173776 | LR=7.88e-04
+2026-03-20 18:58:50,022 - src.model_trainer - INFO - Epoch   200 | Train=0.229043 | Val=0.099110 | LR=3.94e-04
+2026-03-20 18:58:53,549 - src.model_trainer - INFO - 早停于 epoch 236，最佳验证 MSE=0.066690
+2026-03-20 18:59:03,160 - src.model_trainer - INFO - Epoch   100 | Train=0.323977 | Val=0.093859 | LR=1.58e-03
+2026-03-20 18:59:13,033 - src.model_trainer - INFO - Epoch   200 | Train=0.225261 | Val=0.050555 | LR=7.88e-04
+2026-03-20 18:59:21,222 - src.model_trainer - INFO - 早停于 epoch 281，最佳验证 MSE=0.028857
+2026-03-20 18:59:30,500 - src.model_trainer - INFO - Epoch   100 | Train=0.336061 | Val=0.048162 | LR=1.58e-03
+2026-03-20 18:59:40,579 - src.model_trainer - INFO - Epoch   200 | Train=0.207828 | Val=0.054123 | LR=7.88e-04
+2026-03-20 18:59:48,482 - src.model_trainer - INFO - 早停于 epoch 284，最佳验证 MSE=0.026806
+2026-03-20 18:59:54,511 - src.model_trainer - INFO - Epoch   100 | Train=0.318296 | Val=0.074893 | LR=6.78e-04
+2026-03-20 19:00:00,641 - src.model_trainer - INFO - Epoch   200 | Train=0.215456 | Val=0.081307 | LR=3.39e-04
+2026-03-20 19:00:06,928 - src.model_trainer - INFO - Epoch   300 | Train=0.207330 | Val=0.047812 | LR=1.69e-04
+2026-03-20 19:00:08,582 - src.model_trainer - INFO - 早停于 epoch 327，最佳验证 MSE=0.024956
+2026-03-20 19:00:14,606 - src.model_trainer - INFO - Epoch   100 | Train=0.308628 | Val=0.101807 | LR=6.78e-04
+2026-03-20 19:00:20,591 - src.model_trainer - INFO - Epoch   200 | Train=0.254384 | Val=0.046665 | LR=3.39e-04
+2026-03-20 19:00:26,687 - src.model_trainer - INFO - Epoch   300 | Train=0.292920 | Val=0.038714 | LR=4.23e-05
+2026-03-20 19:00:32,599 - src.model_trainer - INFO - Epoch   400 | Train=0.212012 | Val=0.061375 | LR=1.06e-05
+2026-03-20 19:00:35,641 - src.model_trainer - INFO - 早停于 epoch 452，最佳验证 MSE=0.025683
+2026-03-20 19:00:41,640 - src.model_trainer - INFO - Epoch   100 | Train=0.314918 | Val=0.101860 | LR=1.36e-03
+2026-03-20 19:00:47,706 - src.model_trainer - INFO - Epoch   200 | Train=0.243167 | Val=0.056133 | LR=6.78e-04
+2026-03-20 19:00:53,783 - src.model_trainer - INFO - Epoch   300 | Train=0.186321 | Val=0.044860 | LR=1.69e-04
+2026-03-20 19:00:59,795 - src.model_trainer - INFO - Epoch   400 | Train=0.199380 | Val=0.049728 | LR=8.47e-05
+2026-03-20 19:01:01,459 - src.model_trainer - INFO - 早停于 epoch 427，最佳验证 MSE=0.028285
+2026-03-20 19:01:07,406 - src.model_trainer - INFO - Epoch   100 | Train=0.345978 | Val=0.075705 | LR=6.78e-04
+2026-03-20 19:01:11,359 - src.model_trainer - INFO - 早停于 epoch 165，最佳验证 MSE=0.043735
+2026-03-20 19:01:17,582 - src.model_trainer - INFO - Epoch   100 | Train=0.333154 | Val=0.177889 | LR=1.36e-03
+2026-03-20 19:01:23,460 - src.model_trainer - INFO - Epoch   200 | Train=0.253948 | Val=0.053450 | LR=6.78e-04
+2026-03-20 19:01:29,454 - src.model_trainer - INFO - Epoch   300 | Train=0.182686 | Val=0.042928 | LR=1.69e-04
+2026-03-20 19:01:35,570 - src.model_trainer - INFO - Epoch   400 | Train=0.182737 | Val=0.044750 | LR=4.23e-05
+2026-03-20 19:01:37,020 - src.model_trainer - INFO - 早停于 epoch 420，最佳验证 MSE=0.020923
+2026-03-20 19:01:48,121 - src.model_trainer - INFO - Epoch   100 | Train=0.634043 | Val=0.583918 | LR=1.08e-04
+2026-03-20 19:01:56,571 - src.model_trainer - INFO - 早停于 epoch 191，最佳验证 MSE=0.342363
+2026-03-20 19:02:07,016 - src.model_trainer - INFO - Epoch   100 | Train=0.660970 | Val=0.651302 | LR=1.08e-04
+2026-03-20 19:02:15,191 - src.model_trainer - INFO - 早停于 epoch 191，最佳验证 MSE=0.349051
+2026-03-20 19:02:24,942 - src.model_trainer - INFO - Epoch   100 | Train=0.645333 | Val=0.827308 | LR=2.16e-04
+2026-03-20 19:02:34,872 - src.model_trainer - INFO - Epoch   200 | Train=0.468451 | Val=0.548612 | LR=5.40e-05
+2026-03-20 19:02:35,374 - src.model_trainer - INFO - 早停于 epoch 205，最佳验证 MSE=0.303305
+2026-03-20 19:02:44,943 - src.model_trainer - INFO - Epoch   100 | Train=0.675535 | Val=0.587909 | LR=2.16e-04
+2026-03-20 19:02:55,207 - src.model_trainer - INFO - Epoch   200 | Train=0.594358 | Val=0.510752 | LR=5.40e-05
+2026-03-20 19:02:59,183 - src.model_trainer - INFO - 早停于 epoch 245，最佳验证 MSE=0.291085
+2026-03-20 19:03:08,649 - src.model_trainer - INFO - Epoch   100 | Train=0.678088 | Val=0.568106 | LR=2.16e-04
+2026-03-20 19:03:14,925 - src.model_trainer - INFO - 早停于 epoch 163，最佳验证 MSE=0.417930
+2026-03-20 19:03:18,338 - src.model_trainer - INFO - Epoch   100 | Train=0.289060 | Val=0.044025 | LR=1.58e-03
+2026-03-20 19:03:21,448 - src.model_trainer - INFO - Epoch   200 | Train=0.184713 | Val=0.053768 | LR=7.89e-04
+2026-03-20 19:03:24,617 - src.model_trainer - INFO - Epoch   300 | Train=0.145995 | Val=0.019900 | LR=1.97e-04
+2026-03-20 19:03:27,750 - src.model_trainer - INFO - Epoch   400 | Train=0.151478 | Val=0.023968 | LR=2.46e-05
+2026-03-20 19:03:27,810 - src.model_trainer - INFO - 早停于 epoch 402，最佳验证 MSE=0.018316
+2026-03-20 19:03:31,333 - src.model_trainer - INFO - Epoch   100 | Train=0.254850 | Val=0.037607 | LR=1.58e-03
+2026-03-20 19:03:34,403 - src.model_trainer - INFO - Epoch   200 | Train=0.186174 | Val=0.020133 | LR=1.97e-04
+2026-03-20 19:03:37,836 - src.model_trainer - INFO - Epoch   300 | Train=0.148410 | Val=0.036565 | LR=4.93e-05
+2026-03-20 19:03:41,874 - src.model_trainer - INFO - Epoch   400 | Train=0.160992 | Val=0.022870 | LR=6.16e-06
+2026-03-20 19:03:43,604 - src.model_trainer - INFO - 早停于 epoch 447，最佳验证 MSE=0.016169
+2026-03-20 19:03:46,837 - src.model_trainer - INFO - Epoch   100 | Train=0.247770 | Val=0.104457 | LR=1.58e-03
+2026-03-20 19:03:50,022 - src.model_trainer - INFO - Epoch   200 | Train=0.181913 | Val=0.032354 | LR=7.89e-04
+2026-03-20 19:03:53,305 - src.model_trainer - INFO - Epoch   300 | Train=0.148262 | Val=0.034061 | LR=9.86e-05
+2026-03-20 19:03:56,585 - src.model_trainer - INFO - Epoch   400 | Train=0.135850 | Val=0.027645 | LR=2.46e-05
+2026-03-20 19:03:57,115 - src.model_trainer - INFO - 早停于 epoch 415，最佳验证 MSE=0.023789
+2026-03-20 19:04:00,336 - src.model_trainer - INFO - Epoch   100 | Train=0.283090 | Val=0.049102 | LR=1.58e-03
+2026-03-20 19:04:03,627 - src.model_trainer - INFO - Epoch   200 | Train=0.151355 | Val=0.056886 | LR=3.94e-04
+2026-03-20 19:04:03,810 - src.model_trainer - INFO - 早停于 epoch 206，最佳验证 MSE=0.024479
+2026-03-20 19:04:07,165 - src.model_trainer - INFO - Epoch   100 | Train=0.283424 | Val=0.046947 | LR=1.58e-03
+2026-03-20 19:04:10,424 - src.model_trainer - INFO - Epoch   200 | Train=0.234134 | Val=0.058261 | LR=1.58e-03
+2026-03-20 19:04:13,732 - src.model_trainer - INFO - Epoch   300 | Train=0.151096 | Val=0.034684 | LR=3.94e-04
+2026-03-20 19:04:16,891 - src.model_trainer - INFO - Epoch   400 | Train=0.140577 | Val=0.027163 | LR=9.86e-05
+2026-03-20 19:04:19,981 - src.model_trainer - INFO - Epoch   500 | Train=0.132631 | Val=0.019476 | LR=1.23e-05
+2026-03-20 19:04:22,085 - src.model_trainer - INFO - 早停于 epoch 569，最佳验证 MSE=0.018306
+2026-03-20 19:04:25,523 - src.model_trainer - INFO - Epoch   100 | Train=0.582202 | Val=0.369338 | LR=2.40e-04
+2026-03-20 19:04:28,894 - src.model_trainer - INFO - Epoch   200 | Train=0.186183 | Val=0.061279 | LR=1.20e-04
+2026-03-20 19:04:32,152 - src.model_trainer - INFO - Epoch   300 | Train=0.086730 | Val=0.044149 | LR=3.01e-05
+2026-03-20 19:04:35,216 - src.model_trainer - INFO - Epoch   400 | Train=0.089868 | Val=0.037727 | LR=7.51e-06
+2026-03-20 19:04:36,407 - src.model_trainer - INFO - 早停于 epoch 439，最佳验证 MSE=0.029307
+2026-03-20 19:04:39,691 - src.model_trainer - INFO - Epoch   100 | Train=0.401697 | Val=0.258010 | LR=2.40e-04
+2026-03-20 19:04:43,127 - src.model_trainer - INFO - Epoch   200 | Train=0.228001 | Val=0.071862 | LR=1.20e-04
+2026-03-20 19:04:46,576 - src.model_trainer - INFO - Epoch   300 | Train=0.152791 | Val=0.029413 | LR=3.01e-05
+2026-03-20 19:04:48,770 - src.model_trainer - INFO - 早停于 epoch 369，最佳验证 MSE=0.021866
+2026-03-20 19:04:52,116 - src.model_trainer - INFO - Epoch   100 | Train=0.510400 | Val=0.152787 | LR=2.40e-04
+2026-03-20 19:04:55,644 - src.model_trainer - INFO - Epoch   200 | Train=0.253191 | Val=0.077595 | LR=1.20e-04
+2026-03-20 19:04:59,157 - src.model_trainer - INFO - Epoch   300 | Train=0.118412 | Val=0.036541 | LR=3.01e-05
+2026-03-20 19:05:02,375 - src.model_trainer - INFO - Epoch   400 | Train=0.093224 | Val=0.042670 | LR=3.76e-06
+2026-03-20 19:05:05,287 - src.model_trainer - INFO - 早停于 epoch 488，最佳验证 MSE=0.035680
+2026-03-20 19:05:08,909 - src.model_trainer - INFO - Epoch   100 | Train=0.522138 | Val=0.283959 | LR=2.40e-04
+2026-03-20 19:05:12,485 - src.model_trainer - INFO - Epoch   200 | Train=0.359388 | Val=0.116791 | LR=1.20e-04
+2026-03-20 19:05:16,375 - src.model_trainer - INFO - Epoch   300 | Train=0.149435 | Val=0.049151 | LR=3.01e-05
+2026-03-20 19:05:20,024 - src.model_trainer - INFO - 早停于 epoch 389，最佳验证 MSE=0.038945
+2026-03-20 19:05:26,720 - src.model_trainer - INFO - Epoch   100 | Train=0.542135 | Val=0.249737 | LR=2.40e-04
+2026-03-20 19:05:31,166 - src.model_trainer - INFO - Epoch   200 | Train=0.252374 | Val=0.168989 | LR=2.40e-04
+2026-03-20 19:05:35,845 - src.model_trainer - INFO - Epoch   300 | Train=0.121448 | Val=0.101841 | LR=1.20e-04
+2026-03-20 19:05:41,737 - src.model_trainer - INFO - Epoch   400 | Train=0.085437 | Val=0.056710 | LR=6.01e-05
+2026-03-20 19:05:47,364 - src.model_trainer - INFO - Epoch   500 | Train=0.068873 | Val=0.039378 | LR=1.50e-05
+2026-03-20 19:05:47,569 - src.model_trainer - INFO - 早停于 epoch 504，最佳验证 MSE=0.033594
+2026-03-20 19:05:53,337 - src.model_trainer - INFO - Epoch   100 | Train=0.321195 | Val=0.051161 | LR=1.13e-03
+2026-03-20 19:05:58,569 - src.model_trainer - INFO - Epoch   200 | Train=0.193932 | Val=0.034393 | LR=5.65e-04
+2026-03-20 19:06:02,537 - src.model_trainer - INFO - 早停于 epoch 278，最佳验证 MSE=0.026335
+2026-03-20 19:06:07,891 - src.model_trainer - INFO - Epoch   100 | Train=0.327275 | Val=0.065490 | LR=1.13e-03
+2026-03-20 19:06:12,689 - src.model_trainer - INFO - Epoch   200 | Train=0.199286 | Val=0.046900 | LR=5.65e-04
+2026-03-20 19:06:17,886 - src.model_trainer - INFO - Epoch   300 | Train=0.190599 | Val=0.035815 | LR=7.06e-05
+2026-03-20 19:06:20,231 - src.model_trainer - INFO - 早停于 epoch 349，最佳验证 MSE=0.019942
+2026-03-20 19:06:24,597 - src.model_trainer - INFO - Epoch   100 | Train=0.284514 | Val=0.063833 | LR=1.13e-03
+2026-03-20 19:06:30,060 - src.model_trainer - INFO - Epoch   200 | Train=0.206410 | Val=0.037478 | LR=2.82e-04
+2026-03-20 19:06:34,323 - src.model_trainer - INFO - 早停于 epoch 283，最佳验证 MSE=0.027722
+2026-03-20 19:06:37,761 - src.model_trainer - INFO - Epoch   100 | Train=0.249580 | Val=0.081328 | LR=5.65e-04
+2026-03-20 19:06:40,987 - src.model_trainer - INFO - Epoch   200 | Train=0.200334 | Val=0.036443 | LR=1.41e-04
+2026-03-20 19:06:41,487 - src.model_trainer - INFO - 早停于 epoch 215，最佳验证 MSE=0.032480
+2026-03-20 19:06:44,596 - src.model_trainer - INFO - Epoch   100 | Train=0.276942 | Val=0.042791 | LR=1.13e-03
+2026-03-20 19:06:47,728 - src.model_trainer - INFO - Epoch   200 | Train=0.200684 | Val=0.048785 | LR=5.65e-04
+2026-03-20 19:06:51,138 - src.model_trainer - INFO - Epoch   300 | Train=0.172660 | Val=0.035276 | LR=7.06e-05
+2026-03-20 19:06:51,423 - src.model_trainer - INFO - 早停于 epoch 308，最佳验证 MSE=0.022825
+2026-03-20 19:06:55,003 - src.model_trainer - INFO - Epoch   100 | Train=0.267235 | Val=0.075706 | LR=2.22e-03
+2026-03-20 19:06:58,113 - src.model_trainer - INFO - Epoch   200 | Train=0.125035 | Val=0.024294 | LR=1.11e-03
+2026-03-20 19:07:01,234 - src.model_trainer - INFO - Epoch   300 | Train=0.109302 | Val=0.024557 | LR=2.78e-04
+2026-03-20 19:07:04,344 - src.model_trainer - INFO - Epoch   400 | Train=0.120708 | Val=0.024298 | LR=3.47e-05
+2026-03-20 19:07:04,594 - src.model_trainer - INFO - 早停于 epoch 408，最佳验证 MSE=0.020064
+2026-03-20 19:07:07,917 - src.model_trainer - INFO - Epoch   100 | Train=0.182902 | Val=0.027698 | LR=2.22e-03
+2026-03-20 19:07:11,589 - src.model_trainer - INFO - Epoch   200 | Train=0.200510 | Val=0.010749 | LR=1.11e-03
+2026-03-20 19:07:15,268 - src.model_trainer - INFO - Epoch   300 | Train=0.115776 | Val=0.014583 | LR=2.78e-04
+2026-03-20 19:07:16,431 - src.model_trainer - INFO - 早停于 epoch 335，最佳验证 MSE=0.009653
+2026-03-20 19:07:20,634 - src.model_trainer - INFO - Epoch   100 | Train=0.185196 | Val=0.058855 | LR=2.22e-03
+2026-03-20 19:07:25,530 - src.model_trainer - INFO - Epoch   200 | Train=0.145066 | Val=0.040468 | LR=5.56e-04
+2026-03-20 19:07:28,466 - src.model_trainer - INFO - 早停于 epoch 261，最佳验证 MSE=0.029869
+2026-03-20 19:07:34,480 - src.model_trainer - INFO - Epoch   100 | Train=0.226499 | Val=0.056565 | LR=2.22e-03
+2026-03-20 19:07:38,389 - src.model_trainer - INFO - Epoch   200 | Train=0.147509 | Val=0.016938 | LR=2.22e-03
+2026-03-20 19:07:41,811 - src.model_trainer - INFO - Epoch   300 | Train=0.126714 | Val=0.013047 | LR=2.78e-04
+2026-03-20 19:07:45,253 - src.model_trainer - INFO - Epoch   400 | Train=0.116401 | Val=0.013896 | LR=6.95e-05
+2026-03-20 19:07:45,741 - src.model_trainer - INFO - 早停于 epoch 415，最佳验证 MSE=0.011099
+2026-03-20 19:07:48,857 - src.model_trainer - INFO - Epoch   100 | Train=0.185972 | Val=0.035064 | LR=2.22e-03
+2026-03-20 19:07:52,047 - src.model_trainer - INFO - Epoch   200 | Train=0.121713 | Val=0.025365 | LR=5.56e-04
+2026-03-20 19:07:55,299 - src.model_trainer - INFO - Epoch   300 | Train=0.140619 | Val=0.022466 | LR=2.78e-04
+2026-03-20 19:07:58,542 - src.model_trainer - INFO - Epoch   400 | Train=0.115331 | Val=0.018537 | LR=1.39e-04
+2026-03-20 19:07:59,295 - src.model_trainer - INFO - 早停于 epoch 423，最佳验证 MSE=0.015948
+2026-03-20 19:08:05,085 - src.model_trainer - INFO - Epoch   100 | Train=0.202353 | Val=0.072017 | LR=2.23e-03
+2026-03-20 19:08:10,986 - src.model_trainer - INFO - Epoch   200 | Train=0.172142 | Val=0.036977 | LR=1.12e-03
+2026-03-20 19:08:13,892 - src.model_trainer - INFO - 早停于 epoch 250，最佳验证 MSE=0.023463
+2026-03-20 19:08:19,371 - src.model_trainer - INFO - Epoch   100 | Train=0.272254 | Val=0.060670 | LR=2.23e-03
+2026-03-20 19:08:25,052 - src.model_trainer - INFO - Epoch   200 | Train=0.202469 | Val=0.041136 | LR=1.12e-03
+2026-03-20 19:08:28,225 - src.model_trainer - INFO - 早停于 epoch 252，最佳验证 MSE=0.012649
+2026-03-20 19:09:31,707 - __main__ - INFO - ==============================================================
+2026-03-20 19:09:31,708 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 19:09:31,708 - __main__ - INFO - ==============================================================
+2026-03-20 19:09:31,710 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 19:09:31,710 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 19:09:31,710 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 19:09:31,711 - src.data_loader - INFO - =======================================================
+2026-03-20 19:09:31,711 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 19:09:31,712 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 19:09:31,722 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 19:09:31,722 - src.data_loader - INFO - =======================================================
+2026-03-20 19:09:31,723 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 19:09:31,723 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 19:09:31,723 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 19:09:31,724 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 19:09:31,726 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 19:09:31,727 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 19:09:31,728 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 19:09:31,745 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 19:09:31,745 - src.model_trainer - INFO - 从 logs/best_params.json 加载最优参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:09:31,745 - src.model_trainer - INFO - 最终训练参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:09:31,745 - src.model_trainer - INFO - ── Fold 1/5 ──────────────────────────
+2026-03-20 19:09:36,671 - src.model_trainer - INFO - Epoch   100 | Train=0.244800 | Val=0.118890 | LR=2.22e-03
+2026-03-20 19:09:40,083 - src.model_trainer - INFO - Epoch   200 | Train=0.163462 | Val=0.061543 | LR=2.22e-03
+2026-03-20 19:09:44,873 - src.model_trainer - INFO - Epoch   300 | Train=0.114109 | Val=0.022222 | LR=5.56e-04
+2026-03-20 19:09:49,861 - src.model_trainer - INFO - Epoch   400 | Train=0.116622 | Val=0.022385 | LR=1.39e-04
+2026-03-20 19:09:50,989 - src.model_trainer - INFO - 早停于 epoch 427，最佳验证 MSE=0.020174
+2026-03-20 19:09:50,991 - src.model_trainer - INFO - Fold 1 | RMSE=775.03 kN | COV=0.1607
+2026-03-20 19:09:50,991 - src.model_trainer - INFO - ── Fold 2/5 ──────────────────────────
+2026-03-20 19:09:55,817 - src.model_trainer - INFO - Epoch   100 | Train=0.181909 | Val=0.035571 | LR=2.22e-03
+2026-03-20 19:10:00,986 - src.model_trainer - INFO - Epoch   200 | Train=0.201114 | Val=0.016518 | LR=1.11e-03
+2026-03-20 19:10:07,219 - src.model_trainer - INFO - Epoch   300 | Train=0.119038 | Val=0.013646 | LR=2.78e-04
+2026-03-20 19:10:12,469 - src.model_trainer - INFO - Epoch   400 | Train=0.105986 | Val=0.014228 | LR=3.47e-05
+2026-03-20 19:10:15,006 - src.model_trainer - INFO - 早停于 epoch 447，最佳验证 MSE=0.010392
+2026-03-20 19:10:15,008 - src.model_trainer - INFO - Fold 2 | RMSE=317.63 kN | COV=0.0993
+2026-03-20 19:10:15,008 - src.model_trainer - INFO - ── Fold 3/5 ──────────────────────────
+2026-03-20 19:10:20,562 - src.model_trainer - INFO - Epoch   100 | Train=0.203649 | Val=0.126967 | LR=2.22e-03
+2026-03-20 19:10:26,185 - src.model_trainer - INFO - Epoch   200 | Train=0.222449 | Val=0.029256 | LR=1.11e-03
+2026-03-20 19:10:30,984 - src.model_trainer - INFO - 早停于 epoch 280，最佳验证 MSE=0.029256
+2026-03-20 19:10:30,985 - src.model_trainer - INFO - Fold 3 | RMSE=374.54 kN | COV=0.2101
+2026-03-20 19:10:30,986 - src.model_trainer - INFO - ── Fold 4/5 ──────────────────────────
+2026-03-20 19:10:35,799 - src.model_trainer - INFO - Epoch   100 | Train=0.229570 | Val=0.022568 | LR=2.22e-03
+2026-03-20 19:10:40,055 - src.model_trainer - INFO - Epoch   200 | Train=0.156200 | Val=0.019267 | LR=1.11e-03
+2026-03-20 19:10:45,748 - src.model_trainer - INFO - Epoch   300 | Train=0.124303 | Val=0.020997 | LR=2.78e-04
+2026-03-20 19:10:50,581 - src.model_trainer - INFO - Epoch   400 | Train=0.108827 | Val=0.014999 | LR=6.95e-05
+2026-03-20 19:10:50,972 - src.model_trainer - INFO - 早停于 epoch 412，最佳验证 MSE=0.010823
+2026-03-20 19:10:50,974 - src.model_trainer - INFO - Fold 4 | RMSE=366.97 kN | COV=0.1073
+2026-03-20 19:10:50,974 - src.model_trainer - INFO - ── Fold 5/5 ──────────────────────────
+2026-03-20 19:10:54,335 - src.model_trainer - INFO - Epoch   100 | Train=0.188125 | Val=0.042920 | LR=1.11e-03
+2026-03-20 19:10:57,665 - src.model_trainer - INFO - Epoch   200 | Train=0.164104 | Val=0.041920 | LR=1.11e-03
+2026-03-20 19:11:01,071 - src.model_trainer - INFO - Epoch   300 | Train=0.127407 | Val=0.032386 | LR=2.78e-04
+2026-03-20 19:11:04,471 - src.model_trainer - INFO - Epoch   400 | Train=0.128431 | Val=0.028931 | LR=6.95e-05
+2026-03-20 19:11:06,913 - src.model_trainer - INFO - 早停于 epoch 473，最佳验证 MSE=0.017594
+2026-03-20 19:11:06,914 - src.model_trainer - INFO - Fold 5 | RMSE=359.70 kN | COV=0.1474
+2026-03-20 19:11:06,915 - src.model_trainer - INFO - KFold 平均 | RMSE=438.77 | COV=0.1450
+2026-03-20 19:11:06,923 - src.model_trainer - INFO - 模型已保存: output/best_model.pth
+2026-03-20 19:11:06,927 - __main__ - INFO - 
+【测试集评估（原始尺度 kN）】
+2026-03-20 19:11:06,927 - src.evaluator - INFO - ====================================================
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   评估结果 [Test]
+2026-03-20 19:11:06,927 - src.evaluator - INFO - ====================================================
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   R²          : 0.971265
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   RMSE        : 383.9768
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   MAE         : 194.1060
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   MAPE        : 7.8226 %
+2026-03-20 19:11:06,927 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   COV         : 0.103306  ← 核心工程指标
+2026-03-20 19:11:06,927 - src.evaluator - INFO -   μ_ξ (均值比): 1.003803  (理想≈1.0)
+2026-03-20 19:11:06,928 - src.evaluator - INFO -   σ_ξ (标准差): 0.103699
+2026-03-20 19:11:06,928 - src.evaluator - INFO - ====================================================
+2026-03-20 19:11:06,928 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:11:06,928 - __main__ - INFO - 
+【训练集评估（原始尺度 kN）】
+2026-03-20 19:11:06,928 - src.evaluator - INFO - ====================================================
+2026-03-20 19:11:06,928 - src.evaluator - INFO -   评估结果 [Train]
+2026-03-20 19:11:06,928 - src.evaluator - INFO - ====================================================
+2026-03-20 19:11:06,928 - src.evaluator - INFO -   R²          : 0.982299
+2026-03-20 19:11:06,928 - src.evaluator - INFO -   RMSE        : 371.2876
+2026-03-20 19:11:06,928 - src.evaluator - INFO -   MAE         : 206.5421
+2026-03-20 19:11:06,928 - src.evaluator - INFO -   MAPE        : 8.0365 %
+2026-03-20 19:11:06,929 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:11:06,929 - src.evaluator - INFO -   COV         : 0.121949  ← 核心工程指标
+2026-03-20 19:11:06,929 - src.evaluator - INFO -   μ_ξ (均值比): 1.005842  (理想≈1.0)
+2026-03-20 19:11:06,929 - src.evaluator - INFO -   σ_ξ (标准差): 0.122662
+2026-03-20 19:11:06,929 - src.evaluator - INFO - ====================================================
+2026-03-20 19:11:06,929 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:11:06,929 - __main__ - INFO - 计算排列重要性（Permutation Importance）...
+2026-03-20 19:11:07,079 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:11:07,081 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:11:07,082 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:11:07,082 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:11:07,082 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:11:07,082 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:11:07,100 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u771f' [U+771f], substituting with a dummy symbol.
+2026-03-20 19:11:07,100 - matplotlib.mathtext - INFO - Substituting symbol 真 from STIXGeneral
+2026-03-20 19:11:07,100 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u5b9e' [U+5b9e], substituting with a dummy symbol.
+2026-03-20 19:11:07,100 - matplotlib.mathtext - INFO - Substituting symbol 实 from STIXGeneral
+2026-03-20 19:11:07,100 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:11:07,100 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:11:07,139 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:11:07,139 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:11:07,139 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:11:07,139 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:11:07,139 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:11:07,139 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:11:07,148 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u771f' [U+771f], substituting with a dummy symbol.
+2026-03-20 19:11:07,148 - matplotlib.mathtext - INFO - Substituting symbol 真 from STIXGeneral
+2026-03-20 19:11:07,148 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u5b9e' [U+5b9e], substituting with a dummy symbol.
+2026-03-20 19:11:07,148 - matplotlib.mathtext - INFO - Substituting symbol 实 from STIXGeneral
+2026-03-20 19:11:07,148 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:11:07,148 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:11:07,202 - src.visualizer - INFO - 图表已保存: output\pred_vs_true_test.png
+2026-03-20 19:11:07,412 - src.visualizer - INFO - 图表已保存: output\residuals.png
+2026-03-20 19:11:07,534 - src.visualizer - INFO - 图表已保存: output\feature_importance.png
+2026-03-20 19:11:08,455 - src.visualizer - INFO - 图表已保存: output\training_curves.png
+2026-03-20 19:11:08,484 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:11:08,484 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:11:08,485 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:11:08,485 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:11:08,485 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:11:08,485 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:11:08,519 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:11:08,519 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:11:08,519 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:11:08,519 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:11:08,519 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:11:08,519 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:11:08,560 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:11:08,560 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:11:08,561 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:11:08,561 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:11:08,561 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:11:08,561 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:11:08,613 - src.visualizer - INFO - 图表已保存: output\ratio_distribution.png
+2026-03-20 19:11:08,613 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:11:08,613 - __main__ - INFO -   KFold 各折汇总
+2026-03-20 19:11:08,613 - __main__ - INFO - ==============================================================
+2026-03-20 19:11:08,613 - __main__ - INFO -   Fold 1 | RMSE=775.03 kN | COV=0.1607
+2026-03-20 19:11:08,613 - __main__ - INFO -   Fold 2 | RMSE=317.63 kN | COV=0.0993
+2026-03-20 19:11:08,613 - __main__ - INFO -   Fold 3 | RMSE=374.54 kN | COV=0.2101
+2026-03-20 19:11:08,613 - __main__ - INFO -   Fold 4 | RMSE=366.97 kN | COV=0.1073
+2026-03-20 19:11:08,613 - __main__ - INFO -   Fold 5 | RMSE=359.70 kN | COV=0.1474
+2026-03-20 19:11:08,613 - __main__ - INFO -   平均     | RMSE=438.77 kN | COV=0.1450
+2026-03-20 19:11:08,613 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:11:08,613 - __main__ - INFO -   训练完成！
+2026-03-20 19:11:08,613 - __main__ - INFO -   Test R²   : 0.971265
+2026-03-20 19:11:08,613 - __main__ - INFO -   Test RMSE : 383.98 kN
+2026-03-20 19:11:08,613 - __main__ - INFO -   Test COV  : 0.103306  ← 工程核心指标
+2026-03-20 19:11:08,613 - __main__ - INFO -   模型保存  : output/best_model.pth
+2026-03-20 19:11:08,614 - __main__ - INFO -   图表保存  : output/
+2026-03-20 19:11:08,614 - __main__ - INFO - ==============================================================
+2026-03-20 19:12:20,975 - __main__ - INFO - ==============================================================
+2026-03-20 19:12:20,975 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 19:12:20,975 - __main__ - INFO - ==============================================================
+2026-03-20 19:12:20,977 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 19:12:20,978 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 19:12:20,978 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 19:12:20,978 - src.data_loader - INFO - =======================================================
+2026-03-20 19:12:20,978 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 19:12:20,978 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 19:12:20,989 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 19:12:20,989 - src.data_loader - INFO - =======================================================
+2026-03-20 19:12:20,990 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 19:12:20,990 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 19:12:20,990 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 19:12:20,991 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 19:12:20,994 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 19:12:20,995 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 19:12:20,995 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 19:12:21,015 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 19:12:21,016 - src.model_trainer - INFO - 从 logs/best_params.json 加载最优参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:12:21,016 - src.model_trainer - INFO - 最终训练参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:12:21,016 - src.model_trainer - INFO - ── Fold 1/5 ──────────────────────────
+2026-03-20 19:12:25,498 - src.model_trainer - INFO - Epoch   100 | Train=0.219363 | Val=0.065978 | LR=2.22e-03
+2026-03-20 19:12:28,607 - src.model_trainer - INFO - Epoch   200 | Train=0.132915 | Val=0.027206 | LR=1.11e-03
+2026-03-20 19:12:31,774 - src.model_trainer - INFO - Epoch   300 | Train=0.133759 | Val=0.029090 | LR=5.56e-04
+2026-03-20 19:12:34,873 - src.model_trainer - INFO - Epoch   400 | Train=0.109845 | Val=0.022085 | LR=2.78e-04
+2026-03-20 19:12:37,628 - src.model_trainer - INFO - 早停于 epoch 491，最佳验证 MSE=0.020073
+2026-03-20 19:12:37,629 - src.model_trainer - INFO - Fold 1 | RMSE=776.90 kN | COV=0.1651
+2026-03-20 19:12:37,630 - src.model_trainer - INFO - ── Fold 2/5 ──────────────────────────
+2026-03-20 19:12:40,857 - src.model_trainer - INFO - Epoch   100 | Train=0.220039 | Val=0.055686 | LR=2.22e-03
+2026-03-20 19:12:44,309 - src.model_trainer - INFO - Epoch   200 | Train=0.162969 | Val=0.015657 | LR=5.56e-04
+2026-03-20 19:12:47,886 - src.model_trainer - INFO - Epoch   300 | Train=0.134587 | Val=0.015235 | LR=1.39e-04
+2026-03-20 19:12:51,044 - src.model_trainer - INFO - Epoch   400 | Train=0.115968 | Val=0.011289 | LR=3.47e-05
+2026-03-20 19:12:53,382 - src.model_trainer - INFO - 早停于 epoch 478，最佳验证 MSE=0.010152
+2026-03-20 19:12:53,383 - src.model_trainer - INFO - Fold 2 | RMSE=362.38 kN | COV=0.0992
+2026-03-20 19:12:53,383 - src.model_trainer - INFO - ── Fold 3/5 ──────────────────────────
+2026-03-20 19:12:56,444 - src.model_trainer - INFO - Epoch   100 | Train=0.240151 | Val=0.061488 | LR=2.22e-03
+2026-03-20 19:12:59,630 - src.model_trainer - INFO - Epoch   200 | Train=0.152293 | Val=0.042471 | LR=2.78e-04
+2026-03-20 19:13:02,788 - src.model_trainer - INFO - Epoch   300 | Train=0.174295 | Val=0.037408 | LR=6.95e-05
+2026-03-20 19:13:04,608 - src.model_trainer - INFO - 早停于 epoch 356，最佳验证 MSE=0.032323
+2026-03-20 19:13:04,610 - src.model_trainer - INFO - Fold 3 | RMSE=378.21 kN | COV=0.2208
+2026-03-20 19:13:04,610 - src.model_trainer - INFO - ── Fold 4/5 ──────────────────────────
+2026-03-20 19:13:07,945 - src.model_trainer - INFO - Epoch   100 | Train=0.208543 | Val=0.035946 | LR=2.22e-03
+2026-03-20 19:13:11,274 - src.model_trainer - INFO - Epoch   200 | Train=0.121907 | Val=0.024507 | LR=5.56e-04
+2026-03-20 19:13:14,522 - src.model_trainer - INFO - Epoch   300 | Train=0.137081 | Val=0.013296 | LR=2.78e-04
+2026-03-20 19:13:17,864 - src.model_trainer - INFO - Epoch   400 | Train=0.132598 | Val=0.013625 | LR=6.95e-05
+2026-03-20 19:13:19,768 - src.model_trainer - INFO - 早停于 epoch 456，最佳验证 MSE=0.011265
+2026-03-20 19:13:19,770 - src.model_trainer - INFO - Fold 4 | RMSE=401.65 kN | COV=0.1100
+2026-03-20 19:13:19,770 - src.model_trainer - INFO - ── Fold 5/5 ──────────────────────────
+2026-03-20 19:13:23,066 - src.model_trainer - INFO - Epoch   100 | Train=0.200675 | Val=0.072514 | LR=2.22e-03
+2026-03-20 19:13:26,431 - src.model_trainer - INFO - Epoch   200 | Train=0.136027 | Val=0.025083 | LR=5.56e-04
+2026-03-20 19:13:29,890 - src.model_trainer - INFO - Epoch   300 | Train=0.138265 | Val=0.020385 | LR=2.78e-04
+2026-03-20 19:13:31,892 - src.model_trainer - INFO - 早停于 epoch 357，最佳验证 MSE=0.017900
+2026-03-20 19:13:31,894 - src.model_trainer - INFO - Fold 5 | RMSE=307.16 kN | COV=0.1484
+2026-03-20 19:13:31,894 - src.model_trainer - INFO - KFold 平均 | RMSE=445.26 | COV=0.1487
+2026-03-20 19:13:31,898 - src.model_trainer - INFO - 模型已保存: output/best_model.pth
+2026-03-20 19:13:31,902 - __main__ - INFO - 
+【测试集评估（原始尺度 kN）】
+2026-03-20 19:13:31,902 - src.evaluator - INFO - ====================================================
+2026-03-20 19:13:31,902 - src.evaluator - INFO -   评估结果 [Test]
+2026-03-20 19:13:31,903 - src.evaluator - INFO - ====================================================
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   R²          : 0.965115
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   RMSE        : 423.0766
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   MAE         : 209.3058
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   MAPE        : 8.2337 %
+2026-03-20 19:13:31,903 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   COV         : 0.108559  ← 核心工程指标
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   μ_ξ (均值比): 1.004764  (理想≈1.0)
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   σ_ξ (标准差): 0.109076
+2026-03-20 19:13:31,903 - src.evaluator - INFO - ====================================================
+2026-03-20 19:13:31,903 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:13:31,903 - __main__ - INFO - 
+【训练集评估（原始尺度 kN）】
+2026-03-20 19:13:31,903 - src.evaluator - INFO - ====================================================
+2026-03-20 19:13:31,903 - src.evaluator - INFO -   评估结果 [Train]
+2026-03-20 19:13:31,904 - src.evaluator - INFO - ====================================================
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   R²          : 0.980909
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   RMSE        : 385.5849
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   MAE         : 208.7135
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   MAPE        : 8.1713 %
+2026-03-20 19:13:31,904 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   COV         : 0.125170  ← 核心工程指标
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   μ_ξ (均值比): 1.012928  (理想≈1.0)
+2026-03-20 19:13:31,904 - src.evaluator - INFO -   σ_ξ (标准差): 0.126788
+2026-03-20 19:13:31,904 - src.evaluator - INFO - ====================================================
+2026-03-20 19:13:31,904 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:13:31,904 - __main__ - INFO - 计算排列重要性（Permutation Importance）...
+2026-03-20 19:13:32,045 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:13:32,046 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:13:32,046 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:13:32,046 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:13:32,046 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:13:32,047 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:13:32,064 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u771f' [U+771f], substituting with a dummy symbol.
+2026-03-20 19:13:32,065 - matplotlib.mathtext - INFO - Substituting symbol 真 from STIXGeneral
+2026-03-20 19:13:32,065 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u5b9e' [U+5b9e], substituting with a dummy symbol.
+2026-03-20 19:13:32,065 - matplotlib.mathtext - INFO - Substituting symbol 实 from STIXGeneral
+2026-03-20 19:13:32,065 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:13:32,065 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:13:32,097 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:13:32,097 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:13:32,097 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:13:32,097 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:13:32,097 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:13:32,097 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:13:32,107 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u771f' [U+771f], substituting with a dummy symbol.
+2026-03-20 19:13:32,107 - matplotlib.mathtext - INFO - Substituting symbol 真 from STIXGeneral
+2026-03-20 19:13:32,107 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u5b9e' [U+5b9e], substituting with a dummy symbol.
+2026-03-20 19:13:32,107 - matplotlib.mathtext - INFO - Substituting symbol 实 from STIXGeneral
+2026-03-20 19:13:32,107 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:13:32,107 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:13:32,154 - src.visualizer - INFO - 图表已保存: output\pred_vs_true_test.png
+2026-03-20 19:13:32,361 - src.visualizer - INFO - 图表已保存: output\residuals.png
+2026-03-20 19:13:32,481 - src.visualizer - INFO - 图表已保存: output\feature_importance.png
+2026-03-20 19:13:33,367 - src.visualizer - INFO - 图表已保存: output\training_curves.png
+2026-03-20 19:13:33,393 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:13:33,393 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:13:33,393 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:13:33,393 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:13:33,393 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:13:33,393 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:13:33,423 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:13:33,423 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:13:33,423 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:13:33,423 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:13:33,423 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:13:33,423 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:13:33,459 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:13:33,459 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:13:33,459 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:13:33,459 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:13:33,459 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:13:33,459 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:13:33,509 - src.visualizer - INFO - 图表已保存: output\ratio_distribution.png
+2026-03-20 19:13:33,509 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:13:33,509 - __main__ - INFO -   KFold 各折汇总
+2026-03-20 19:13:33,509 - __main__ - INFO - ==============================================================
+2026-03-20 19:13:33,509 - __main__ - INFO -   Fold 1 | RMSE=776.90 kN | COV=0.1651
+2026-03-20 19:13:33,509 - __main__ - INFO -   Fold 2 | RMSE=362.38 kN | COV=0.0992
+2026-03-20 19:13:33,509 - __main__ - INFO -   Fold 3 | RMSE=378.21 kN | COV=0.2208
+2026-03-20 19:13:33,509 - __main__ - INFO -   Fold 4 | RMSE=401.65 kN | COV=0.1100
+2026-03-20 19:13:33,509 - __main__ - INFO -   Fold 5 | RMSE=307.16 kN | COV=0.1484
+2026-03-20 19:13:33,509 - __main__ - INFO -   平均     | RMSE=445.26 kN | COV=0.1487
+2026-03-20 19:13:33,509 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:13:33,510 - __main__ - INFO -   训练完成！
+2026-03-20 19:13:33,510 - __main__ - INFO -   Test R²   : 0.965115
+2026-03-20 19:13:33,510 - __main__ - INFO -   Test RMSE : 423.08 kN
+2026-03-20 19:13:33,510 - __main__ - INFO -   Test COV  : 0.108559  ← 工程核心指标
+2026-03-20 19:13:33,510 - __main__ - INFO -   模型保存  : output/best_model.pth
+2026-03-20 19:13:33,510 - __main__ - INFO -   图表保存  : output/
+2026-03-20 19:13:33,510 - __main__ - INFO - ==============================================================
+2026-03-20 19:14:39,061 - __main__ - INFO - ==============================================================
+2026-03-20 19:14:39,061 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 19:14:39,061 - __main__ - INFO - ==============================================================
+2026-03-20 19:14:39,063 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 19:14:39,063 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 19:14:39,063 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 19:14:39,063 - src.data_loader - INFO - =======================================================
+2026-03-20 19:14:39,063 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 19:14:39,064 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 19:14:39,073 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 19:14:39,073 - src.data_loader - INFO - =======================================================
+2026-03-20 19:14:39,074 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 19:14:39,074 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 19:14:39,074 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 19:14:39,075 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 19:14:39,077 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 19:14:39,077 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 19:14:39,079 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 19:14:39,095 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 19:14:39,095 - src.model_trainer - INFO - 从 logs/best_params.json 加载最优参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:14:39,096 - src.model_trainer - INFO - 最终训练参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:14:39,096 - src.model_trainer - INFO - ── Fold 1/5 ──────────────────────────
+2026-03-20 19:14:43,744 - src.model_trainer - INFO - Epoch   100 | Train=0.227909 | Val=0.060313 | LR=2.22e-03
+2026-03-20 19:14:47,145 - src.model_trainer - INFO - Epoch   200 | Train=0.149710 | Val=0.030860 | LR=5.56e-04
+2026-03-20 19:14:48,334 - src.model_trainer - INFO - 早停于 epoch 232，最佳验证 MSE=0.021589
+2026-03-20 19:14:48,335 - src.model_trainer - INFO - Fold 1 | RMSE=697.70 kN | COV=0.1675
+2026-03-20 19:14:48,336 - src.model_trainer - INFO - ── Fold 2/5 ──────────────────────────
+2026-03-20 19:14:51,466 - src.model_trainer - INFO - Epoch   100 | Train=0.186686 | Val=0.022960 | LR=1.11e-03
+2026-03-20 19:14:57,019 - src.model_trainer - INFO - Epoch   200 | Train=0.124660 | Val=0.014053 | LR=2.78e-04
+2026-03-20 19:15:01,334 - src.model_trainer - INFO - Epoch   300 | Train=0.124598 | Val=0.014231 | LR=6.95e-05
+2026-03-20 19:15:04,480 - src.model_trainer - INFO - 早停于 epoch 391，最佳验证 MSE=0.011028
+2026-03-20 19:15:04,483 - src.model_trainer - INFO - Fold 2 | RMSE=347.58 kN | COV=0.1045
+2026-03-20 19:15:04,483 - src.model_trainer - INFO - ── Fold 3/5 ──────────────────────────
+2026-03-20 19:15:07,947 - src.model_trainer - INFO - Epoch   100 | Train=0.206470 | Val=0.047736 | LR=2.22e-03
+2026-03-20 19:15:11,317 - src.model_trainer - INFO - Epoch   200 | Train=0.134878 | Val=0.033075 | LR=5.56e-04
+2026-03-20 19:15:13,717 - src.model_trainer - INFO - 早停于 epoch 277，最佳验证 MSE=0.030054
+2026-03-20 19:15:13,719 - src.model_trainer - INFO - Fold 3 | RMSE=394.03 kN | COV=0.2113
+2026-03-20 19:15:13,719 - src.model_trainer - INFO - ── Fold 4/5 ──────────────────────────
+2026-03-20 19:15:17,023 - src.model_trainer - INFO - Epoch   100 | Train=0.208419 | Val=0.026777 | LR=2.22e-03
+2026-03-20 19:15:20,198 - src.model_trainer - INFO - Epoch   200 | Train=0.136312 | Val=0.018429 | LR=1.11e-03
+2026-03-20 19:15:23,552 - src.model_trainer - INFO - Epoch   300 | Train=0.153008 | Val=0.017686 | LR=2.78e-04
+2026-03-20 19:15:25,352 - src.model_trainer - INFO - 早停于 epoch 354，最佳验证 MSE=0.012184
+2026-03-20 19:15:25,353 - src.model_trainer - INFO - Fold 4 | RMSE=408.85 kN | COV=0.1140
+2026-03-20 19:15:25,353 - src.model_trainer - INFO - ── Fold 5/5 ──────────────────────────
+2026-03-20 19:15:28,624 - src.model_trainer - INFO - Epoch   100 | Train=0.196600 | Val=0.087904 | LR=2.22e-03
+2026-03-20 19:15:31,876 - src.model_trainer - INFO - Epoch   200 | Train=0.148171 | Val=0.028872 | LR=1.11e-03
+2026-03-20 19:15:35,148 - src.model_trainer - INFO - Epoch   300 | Train=0.116160 | Val=0.023828 | LR=5.56e-04
+2026-03-20 19:15:38,440 - src.model_trainer - INFO - Epoch   400 | Train=0.105762 | Val=0.025643 | LR=1.39e-04
+2026-03-20 19:15:39,867 - src.model_trainer - INFO - 早停于 epoch 445，最佳验证 MSE=0.017300
+2026-03-20 19:15:39,869 - src.model_trainer - INFO - Fold 5 | RMSE=325.14 kN | COV=0.1411
+2026-03-20 19:15:39,869 - src.model_trainer - INFO - KFold 平均 | RMSE=434.66 | COV=0.1477
+2026-03-20 19:15:39,872 - src.model_trainer - INFO - 模型已保存: output/best_model.pth
+2026-03-20 19:15:39,877 - __main__ - INFO - 
+【测试集评估（原始尺度 kN）】
+2026-03-20 19:15:39,877 - src.evaluator - INFO - ====================================================
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   评估结果 [Test]
+2026-03-20 19:15:39,877 - src.evaluator - INFO - ====================================================
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   R²          : 0.973527
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   RMSE        : 368.5530
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   MAE         : 205.7304
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   MAPE        : 9.0422 %
+2026-03-20 19:15:39,877 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   COV         : 0.113944  ← 核心工程指标
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   μ_ξ (均值比): 1.027622  (理想≈1.0)
+2026-03-20 19:15:39,877 - src.evaluator - INFO -   σ_ξ (标准差): 0.117092
+2026-03-20 19:15:39,877 - src.evaluator - INFO - ====================================================
+2026-03-20 19:15:39,878 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:15:39,878 - __main__ - INFO - 
+【训练集评估（原始尺度 kN）】
+2026-03-20 19:15:39,878 - src.evaluator - INFO - ====================================================
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   评估结果 [Train]
+2026-03-20 19:15:39,878 - src.evaluator - INFO - ====================================================
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   R²          : 0.979174
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   RMSE        : 402.7322
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   MAE         : 218.9849
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   MAPE        : 8.8629 %
+2026-03-20 19:15:39,878 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   COV         : 0.131845  ← 核心工程指标
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   μ_ξ (均值比): 1.030775  (理想≈1.0)
+2026-03-20 19:15:39,878 - src.evaluator - INFO -   σ_ξ (标准差): 0.135902
+2026-03-20 19:15:39,879 - src.evaluator - INFO - ====================================================
+2026-03-20 19:15:39,879 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:15:39,879 - __main__ - INFO - 计算排列重要性（Permutation Importance）...
+2026-03-20 19:15:40,021 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:15:40,022 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:15:40,023 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:15:40,023 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:15:40,023 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:15:40,023 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:15:40,040 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u771f' [U+771f], substituting with a dummy symbol.
+2026-03-20 19:15:40,040 - matplotlib.mathtext - INFO - Substituting symbol 真 from STIXGeneral
+2026-03-20 19:15:40,040 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u5b9e' [U+5b9e], substituting with a dummy symbol.
+2026-03-20 19:15:40,040 - matplotlib.mathtext - INFO - Substituting symbol 实 from STIXGeneral
+2026-03-20 19:15:40,040 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:15:40,040 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:15:40,070 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:15:40,070 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:15:40,070 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:15:40,070 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:15:40,071 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:15:40,071 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:15:40,079 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u771f' [U+771f], substituting with a dummy symbol.
+2026-03-20 19:15:40,080 - matplotlib.mathtext - INFO - Substituting symbol 真 from STIXGeneral
+2026-03-20 19:15:40,080 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u5b9e' [U+5b9e], substituting with a dummy symbol.
+2026-03-20 19:15:40,080 - matplotlib.mathtext - INFO - Substituting symbol 实 from STIXGeneral
+2026-03-20 19:15:40,080 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u503c' [U+503c], substituting with a dummy symbol.
+2026-03-20 19:15:40,080 - matplotlib.mathtext - INFO - Substituting symbol 值 from STIXGeneral
+2026-03-20 19:15:40,125 - src.visualizer - INFO - 图表已保存: output\pred_vs_true_test.png
+2026-03-20 19:15:40,336 - src.visualizer - INFO - 图表已保存: output\residuals.png
+2026-03-20 19:15:40,454 - src.visualizer - INFO - 图表已保存: output\feature_importance.png
+2026-03-20 19:15:41,333 - src.visualizer - INFO - 图表已保存: output\training_curves.png
+2026-03-20 19:15:41,362 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:15:41,362 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:15:41,362 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:15:41,362 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:15:41,362 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:15:41,362 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:15:41,392 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:15:41,394 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:15:41,394 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:15:41,394 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:15:41,394 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:15:41,394 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:15:41,432 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u9884' [U+9884], substituting with a dummy symbol.
+2026-03-20 19:15:41,432 - matplotlib.mathtext - INFO - Substituting symbol 预 from STIXGeneral
+2026-03-20 19:15:41,432 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6d4b' [U+6d4b], substituting with a dummy symbol.
+2026-03-20 19:15:41,432 - matplotlib.mathtext - INFO - Substituting symbol 测 from STIXGeneral
+2026-03-20 19:15:41,432 - matplotlib.mathtext - WARNING - Font 'default' does not have a glyph for '\u6bd4' [U+6bd4], substituting with a dummy symbol.
+2026-03-20 19:15:41,432 - matplotlib.mathtext - INFO - Substituting symbol 比 from STIXGeneral
+2026-03-20 19:15:41,484 - src.visualizer - INFO - 图表已保存: output\ratio_distribution.png
+2026-03-20 19:15:41,484 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:15:41,484 - __main__ - INFO -   KFold 各折汇总
+2026-03-20 19:15:41,484 - __main__ - INFO - ==============================================================
+2026-03-20 19:15:41,484 - __main__ - INFO -   Fold 1 | RMSE=697.70 kN | COV=0.1675
+2026-03-20 19:15:41,484 - __main__ - INFO -   Fold 2 | RMSE=347.58 kN | COV=0.1045
+2026-03-20 19:15:41,484 - __main__ - INFO -   Fold 3 | RMSE=394.03 kN | COV=0.2113
+2026-03-20 19:15:41,484 - __main__ - INFO -   Fold 4 | RMSE=408.85 kN | COV=0.1140
+2026-03-20 19:15:41,484 - __main__ - INFO -   Fold 5 | RMSE=325.14 kN | COV=0.1411
+2026-03-20 19:15:41,484 - __main__ - INFO -   平均     | RMSE=434.66 kN | COV=0.1477
+2026-03-20 19:15:41,484 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:15:41,484 - __main__ - INFO -   训练完成！
+2026-03-20 19:15:41,484 - __main__ - INFO -   Test R²   : 0.973527
+2026-03-20 19:15:41,484 - __main__ - INFO -   Test RMSE : 368.55 kN
+2026-03-20 19:15:41,485 - __main__ - INFO -   Test COV  : 0.113944  ← 工程核心指标
+2026-03-20 19:15:41,485 - __main__ - INFO -   模型保存  : output/best_model.pth
+2026-03-20 19:15:41,485 - __main__ - INFO -   图表保存  : output/
+2026-03-20 19:15:41,485 - __main__ - INFO - ==============================================================
+2026-03-20 19:19:35,220 - __main__ - INFO - ==============================================================
+2026-03-20 19:19:35,220 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 19:19:35,220 - __main__ - INFO - ==============================================================
+2026-03-20 19:19:35,222 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 19:19:35,223 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 19:19:35,223 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 19:19:35,223 - src.data_loader - INFO - =======================================================
+2026-03-20 19:19:35,223 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 19:19:35,223 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 19:19:35,234 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 19:19:35,234 - src.data_loader - INFO - =======================================================
+2026-03-20 19:19:35,235 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 19:19:35,235 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 19:19:35,235 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 19:19:35,236 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 19:19:35,238 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 19:19:35,239 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 19:19:35,240 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 19:19:35,260 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 19:19:35,260 - src.model_trainer - INFO - 从 logs/best_params.json 加载最优参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:19:35,260 - src.model_trainer - INFO - 最终训练参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:19:35,261 - src.model_trainer - INFO - ── Fold 1/5 ──────────────────────────
+2026-03-20 19:19:40,068 - src.model_trainer - INFO - Epoch   100 | Train=0.198861 | Val=0.046859 | LR=2.22e-03
+2026-03-20 19:19:43,388 - src.model_trainer - INFO - Epoch   200 | Train=0.144031 | Val=0.029072 | LR=1.11e-03
+2026-03-20 19:19:46,709 - src.model_trainer - INFO - Epoch   300 | Train=0.123250 | Val=0.025656 | LR=5.56e-04
+2026-03-20 19:19:49,423 - src.model_trainer - INFO - 早停于 epoch 362，最佳验证 MSE=0.019291
+2026-03-20 19:19:49,426 - src.model_trainer - INFO - Fold 1 | RMSE=670.87 kN | COV=0.1567
+2026-03-20 19:19:49,426 - src.model_trainer - INFO - ── Fold 2/5 ──────────────────────────
+2026-03-20 19:19:53,094 - src.model_trainer - INFO - Epoch   100 | Train=0.218914 | Val=0.062987 | LR=2.22e-03
+2026-03-20 19:19:56,706 - src.model_trainer - INFO - Epoch   200 | Train=0.171666 | Val=0.014072 | LR=2.78e-04
+2026-03-20 19:19:58,406 - src.model_trainer - INFO - 早停于 epoch 245，最佳验证 MSE=0.012161
+2026-03-20 19:19:58,408 - src.model_trainer - INFO - Fold 2 | RMSE=416.43 kN | COV=0.1101
+2026-03-20 19:19:58,408 - src.model_trainer - INFO - ── Fold 3/5 ──────────────────────────
+2026-03-20 19:20:02,403 - src.model_trainer - INFO - Epoch   100 | Train=0.190227 | Val=0.111727 | LR=2.22e-03
+2026-03-20 19:20:05,849 - src.model_trainer - INFO - Epoch   200 | Train=0.137422 | Val=0.052072 | LR=1.11e-03
+2026-03-20 19:20:08,866 - src.model_trainer - INFO - Epoch   300 | Train=0.116410 | Val=0.040833 | LR=2.78e-04
+2026-03-20 19:20:10,913 - src.model_trainer - INFO - 早停于 epoch 363，最佳验证 MSE=0.025426
+2026-03-20 19:20:10,914 - src.model_trainer - INFO - Fold 3 | RMSE=361.59 kN | COV=0.1977
+2026-03-20 19:20:10,914 - src.model_trainer - INFO - ── Fold 4/5 ──────────────────────────
+2026-03-20 19:20:14,224 - src.model_trainer - INFO - Epoch   100 | Train=0.242753 | Val=0.082546 | LR=2.22e-03
+2026-03-20 19:20:17,354 - src.model_trainer - INFO - Epoch   200 | Train=0.153192 | Val=0.029481 | LR=1.11e-03
+2026-03-20 19:20:20,596 - src.model_trainer - INFO - Epoch   300 | Train=0.121589 | Val=0.016655 | LR=5.56e-04
+2026-03-20 19:20:23,877 - src.model_trainer - INFO - Epoch   400 | Train=0.143339 | Val=0.032139 | LR=2.78e-04
+2026-03-20 19:20:25,762 - src.model_trainer - INFO - 早停于 epoch 459，最佳验证 MSE=0.010797
+2026-03-20 19:20:25,764 - src.model_trainer - INFO - Fold 4 | RMSE=413.81 kN | COV=0.1072
+2026-03-20 19:20:25,764 - src.model_trainer - INFO - ── Fold 5/5 ──────────────────────────
+2026-03-20 19:20:28,992 - src.model_trainer - INFO - Epoch   100 | Train=0.212192 | Val=0.061721 | LR=2.22e-03
+2026-03-20 19:20:32,194 - src.model_trainer - INFO - Epoch   200 | Train=0.159324 | Val=0.021667 | LR=5.56e-04
+2026-03-20 19:20:35,387 - src.model_trainer - INFO - Epoch   300 | Train=0.125427 | Val=0.029109 | LR=1.39e-04
+2026-03-20 19:20:37,283 - src.model_trainer - INFO - 早停于 epoch 361，最佳验证 MSE=0.018895
+2026-03-20 19:20:37,285 - src.model_trainer - INFO - Fold 5 | RMSE=314.69 kN | COV=0.1507
+2026-03-20 19:20:37,285 - src.model_trainer - INFO - KFold 平均 | RMSE=435.48 | COV=0.1445
+2026-03-20 19:20:37,288 - src.model_trainer - INFO - 模型已保存: output/best_model.pth
+2026-03-20 19:20:37,291 - __main__ - INFO - 
+【测试集评估（原始尺度 kN）】
+2026-03-20 19:20:37,291 - src.evaluator - INFO - ====================================================
+2026-03-20 19:20:37,291 - src.evaluator - INFO -   评估结果 [Test]
+2026-03-20 19:20:37,291 - src.evaluator - INFO - ====================================================
+2026-03-20 19:20:37,291 - src.evaluator - INFO -   R²          : 0.970860
+2026-03-20 19:20:37,291 - src.evaluator - INFO -   RMSE        : 386.6702
+2026-03-20 19:20:37,291 - src.evaluator - INFO -   MAE         : 200.0747
+2026-03-20 19:20:37,291 - src.evaluator - INFO -   MAPE        : 7.5857 %
+2026-03-20 19:20:37,292 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   COV         : 0.098386  ← 核心工程指标
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   μ_ξ (均值比): 1.007773  (理想≈1.0)
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   σ_ξ (标准差): 0.099150
+2026-03-20 19:20:37,292 - src.evaluator - INFO - ====================================================
+2026-03-20 19:20:37,292 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:20:37,292 - __main__ - INFO - 
+【训练集评估（原始尺度 kN）】
+2026-03-20 19:20:37,292 - src.evaluator - INFO - ====================================================
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   评估结果 [Train]
+2026-03-20 19:20:37,292 - src.evaluator - INFO - ====================================================
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   R²          : 0.979613
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   RMSE        : 398.4653
+2026-03-20 19:20:37,292 - src.evaluator - INFO -   MAE         : 210.1217
+2026-03-20 19:20:37,293 - src.evaluator - INFO -   MAPE        : 8.0600 %
+2026-03-20 19:20:37,293 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:20:37,293 - src.evaluator - INFO -   COV         : 0.130564  ← 核心工程指标
+2026-03-20 19:20:37,293 - src.evaluator - INFO -   μ_ξ (均值比): 1.023697  (理想≈1.0)
+2026-03-20 19:20:37,293 - src.evaluator - INFO -   σ_ξ (标准差): 0.133658
+2026-03-20 19:20:37,293 - src.evaluator - INFO - ====================================================
+2026-03-20 19:20:37,293 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:20:37,293 - __main__ - INFO - 计算排列重要性（Permutation Importance）...
+2026-03-20 19:20:37,457 - src.visualizer - INFO - 图表已保存: output\pred_vs_true_test.png
+2026-03-20 19:20:37,663 - src.visualizer - INFO - 图表已保存: output\residuals.png
+2026-03-20 19:20:37,780 - src.visualizer - INFO - 图表已保存: output\feature_importance.png
+2026-03-20 19:20:38,763 - src.visualizer - INFO - 图表已保存: output\training_curves.png
+2026-03-20 19:20:38,895 - src.visualizer - INFO - 图表已保存: output\ratio_distribution.png
+2026-03-20 19:20:38,896 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:20:38,896 - __main__ - INFO -   KFold 各折汇总
+2026-03-20 19:20:38,896 - __main__ - INFO - ==============================================================
+2026-03-20 19:20:38,896 - __main__ - INFO -   Fold 1 | RMSE=670.87 kN | COV=0.1567
+2026-03-20 19:20:38,896 - __main__ - INFO -   Fold 2 | RMSE=416.43 kN | COV=0.1101
+2026-03-20 19:20:38,896 - __main__ - INFO -   Fold 3 | RMSE=361.59 kN | COV=0.1977
+2026-03-20 19:20:38,896 - __main__ - INFO -   Fold 4 | RMSE=413.81 kN | COV=0.1072
+2026-03-20 19:20:38,896 - __main__ - INFO -   Fold 5 | RMSE=314.69 kN | COV=0.1507
+2026-03-20 19:20:38,896 - __main__ - INFO -   平均     | RMSE=435.48 kN | COV=0.1445
+2026-03-20 19:20:38,896 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:20:38,896 - __main__ - INFO -   训练完成！
+2026-03-20 19:20:38,896 - __main__ - INFO -   Test R²   : 0.970860
+2026-03-20 19:20:38,896 - __main__ - INFO -   Test RMSE : 386.67 kN
+2026-03-20 19:20:38,896 - __main__ - INFO -   Test COV  : 0.098386  ← 工程核心指标
+2026-03-20 19:20:38,896 - __main__ - INFO -   模型保存  : output/best_model.pth
+2026-03-20 19:20:38,896 - __main__ - INFO -   图表保存  : output/
+2026-03-20 19:20:38,896 - __main__ - INFO - ==============================================================
+2026-03-20 19:21:15,452 - __main__ - INFO - ==============================================================
+2026-03-20 19:21:15,452 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 19:21:15,452 - __main__ - INFO - ==============================================================
+2026-03-20 19:21:15,454 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 19:21:15,454 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 19:21:15,454 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 19:21:15,454 - src.data_loader - INFO - =======================================================
+2026-03-20 19:21:15,454 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 19:21:15,455 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 19:21:15,465 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 19:21:15,465 - src.data_loader - INFO - =======================================================
+2026-03-20 19:21:15,466 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 19:21:15,466 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 19:21:15,466 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 19:21:15,467 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 19:21:15,469 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 19:21:15,470 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 19:21:15,471 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 19:21:15,488 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 19:21:15,489 - src.model_trainer - INFO - 从 logs/best_params.json 加载最优参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:21:15,489 - src.model_trainer - INFO - 最终训练参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:21:15,490 - src.model_trainer - INFO - ── Fold 1/5 ──────────────────────────
+2026-03-20 19:21:20,124 - src.model_trainer - INFO - Epoch   100 | Train=0.227778 | Val=0.082919 | LR=2.22e-03
+2026-03-20 19:21:23,209 - src.model_trainer - INFO - Epoch   200 | Train=0.124147 | Val=0.027720 | LR=2.78e-04
+2026-03-20 19:21:26,337 - src.model_trainer - INFO - Epoch   300 | Train=0.138496 | Val=0.024367 | LR=6.95e-05
+2026-03-20 19:21:26,438 - src.model_trainer - INFO - 早停于 epoch 303，最佳验证 MSE=0.022149
+2026-03-20 19:21:26,439 - src.model_trainer - INFO - Fold 1 | RMSE=779.57 kN | COV=0.1663
+2026-03-20 19:21:26,439 - src.model_trainer - INFO - ── Fold 2/5 ──────────────────────────
+2026-03-20 19:21:29,581 - src.model_trainer - INFO - Epoch   100 | Train=0.219444 | Val=0.021872 | LR=2.22e-03
+2026-03-20 19:21:32,716 - src.model_trainer - INFO - Epoch   200 | Train=0.151668 | Val=0.020535 | LR=1.11e-03
+2026-03-20 19:21:35,929 - src.model_trainer - INFO - Epoch   300 | Train=0.138814 | Val=0.018401 | LR=2.78e-04
+2026-03-20 19:21:38,020 - src.model_trainer - INFO - 早停于 epoch 360，最佳验证 MSE=0.009761
+2026-03-20 19:21:38,023 - src.model_trainer - INFO - Fold 2 | RMSE=328.14 kN | COV=0.0998
+2026-03-20 19:21:38,023 - src.model_trainer - INFO - ── Fold 3/5 ──────────────────────────
+2026-03-20 19:21:41,559 - src.model_trainer - INFO - Epoch   100 | Train=0.178171 | Val=0.060980 | LR=1.11e-03
+2026-03-20 19:21:44,804 - src.model_trainer - INFO - Epoch   200 | Train=0.157029 | Val=0.075409 | LR=2.78e-04
+2026-03-20 19:21:47,217 - src.model_trainer - INFO - 早停于 epoch 282，最佳验证 MSE=0.032991
+2026-03-20 19:21:47,218 - src.model_trainer - INFO - Fold 3 | RMSE=405.98 kN | COV=0.2260
+2026-03-20 19:21:47,218 - src.model_trainer - INFO - ── Fold 4/5 ──────────────────────────
+2026-03-20 19:21:50,174 - src.model_trainer - INFO - Epoch   100 | Train=0.212686 | Val=0.033378 | LR=2.22e-03
+2026-03-20 19:21:53,473 - src.model_trainer - INFO - Epoch   200 | Train=0.144463 | Val=0.031999 | LR=2.22e-03
+2026-03-20 19:21:56,658 - src.model_trainer - INFO - Epoch   300 | Train=0.113623 | Val=0.013310 | LR=2.78e-04
+2026-03-20 19:21:59,539 - src.model_trainer - INFO - 早停于 epoch 388，最佳验证 MSE=0.011206
+2026-03-20 19:21:59,541 - src.model_trainer - INFO - Fold 4 | RMSE=385.64 kN | COV=0.1081
+2026-03-20 19:21:59,541 - src.model_trainer - INFO - ── Fold 5/5 ──────────────────────────
+2026-03-20 19:22:02,905 - src.model_trainer - INFO - Epoch   100 | Train=0.209352 | Val=0.098701 | LR=2.22e-03
+2026-03-20 19:22:06,232 - src.model_trainer - INFO - Epoch   200 | Train=0.109988 | Val=0.031923 | LR=1.11e-03
+2026-03-20 19:22:09,480 - src.model_trainer - INFO - Epoch   300 | Train=0.115921 | Val=0.029859 | LR=2.78e-04
+2026-03-20 19:22:10,588 - src.model_trainer - INFO - 早停于 epoch 334，最佳验证 MSE=0.017999
+2026-03-20 19:22:10,589 - src.model_trainer - INFO - Fold 5 | RMSE=355.46 kN | COV=0.1416
+2026-03-20 19:22:10,590 - src.model_trainer - INFO - KFold 平均 | RMSE=450.96 | COV=0.1484
+2026-03-20 19:22:10,592 - src.model_trainer - INFO - 模型已保存: output/best_model.pth
+2026-03-20 19:22:10,597 - __main__ - INFO - 
+【测试集评估（原始尺度 kN）】
+2026-03-20 19:22:10,597 - src.evaluator - INFO - ====================================================
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   评估结果 [Test]
+2026-03-20 19:22:10,597 - src.evaluator - INFO - ====================================================
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   R²          : 0.966506
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   RMSE        : 414.5516
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   MAE         : 213.8763
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   MAPE        : 8.8007 %
+2026-03-20 19:22:10,597 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   COV         : 0.111395  ← 核心工程指标
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   μ_ξ (均值比): 1.026885  (理想≈1.0)
+2026-03-20 19:22:10,597 - src.evaluator - INFO -   σ_ξ (标准差): 0.114390
+2026-03-20 19:22:10,597 - src.evaluator - INFO - ====================================================
+2026-03-20 19:22:10,598 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:22:10,598 - __main__ - INFO - 
+【训练集评估（原始尺度 kN）】
+2026-03-20 19:22:10,598 - src.evaluator - INFO - ====================================================
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   评估结果 [Train]
+2026-03-20 19:22:10,598 - src.evaluator - INFO - ====================================================
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   R²          : 0.981062
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   RMSE        : 384.0362
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   MAE         : 214.7220
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   MAPE        : 8.6775 %
+2026-03-20 19:22:10,598 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   COV         : 0.132571  ← 核心工程指标
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   μ_ξ (均值比): 1.031406  (理想≈1.0)
+2026-03-20 19:22:10,598 - src.evaluator - INFO -   σ_ξ (标准差): 0.136735
+2026-03-20 19:22:10,598 - src.evaluator - INFO - ====================================================
+2026-03-20 19:22:10,599 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:22:10,599 - __main__ - INFO - 计算排列重要性（Permutation Importance）...
+2026-03-20 19:22:11,037 - matplotlib.font_manager - INFO - generated new fontManager
+2026-03-20 19:22:11,158 - src.visualizer - INFO - 图表已保存: output\pred_vs_true_test.png
+2026-03-20 19:22:11,355 - src.visualizer - INFO - 图表已保存: output\residuals.png
+2026-03-20 19:22:11,478 - src.visualizer - INFO - 图表已保存: output\feature_importance.png
+2026-03-20 19:22:12,453 - src.visualizer - INFO - 图表已保存: output\training_curves.png
+2026-03-20 19:22:12,595 - src.visualizer - INFO - 图表已保存: output\ratio_distribution.png
+2026-03-20 19:22:12,595 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:22:12,595 - __main__ - INFO -   KFold 各折汇总
+2026-03-20 19:22:12,595 - __main__ - INFO - ==============================================================
+2026-03-20 19:22:12,595 - __main__ - INFO -   Fold 1 | RMSE=779.57 kN | COV=0.1663
+2026-03-20 19:22:12,595 - __main__ - INFO -   Fold 2 | RMSE=328.14 kN | COV=0.0998
+2026-03-20 19:22:12,595 - __main__ - INFO -   Fold 3 | RMSE=405.98 kN | COV=0.2260
+2026-03-20 19:22:12,595 - __main__ - INFO -   Fold 4 | RMSE=385.64 kN | COV=0.1081
+2026-03-20 19:22:12,595 - __main__ - INFO -   Fold 5 | RMSE=355.46 kN | COV=0.1416
+2026-03-20 19:22:12,595 - __main__ - INFO -   平均     | RMSE=450.96 kN | COV=0.1484
+2026-03-20 19:22:12,595 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:22:12,595 - __main__ - INFO -   训练完成！
+2026-03-20 19:22:12,595 - __main__ - INFO -   Test R²   : 0.966506
+2026-03-20 19:22:12,595 - __main__ - INFO -   Test RMSE : 414.55 kN
+2026-03-20 19:22:12,595 - __main__ - INFO -   Test COV  : 0.111395  ← 工程核心指标
+2026-03-20 19:22:12,595 - __main__ - INFO -   模型保存  : output/best_model.pth
+2026-03-20 19:22:12,595 - __main__ - INFO -   图表保存  : output/
+2026-03-20 19:22:12,596 - __main__ - INFO - ==============================================================
+2026-03-20 19:22:29,083 - __main__ - INFO - ==============================================================
+2026-03-20 19:22:29,083 - __main__ - INFO -   BP 神经网络训练启动（CFDST 极限承载力预测）
+2026-03-20 19:22:29,084 - __main__ - INFO - ==============================================================
+2026-03-20 19:22:29,085 - src.data_loader - INFO - 数据加载成功（编码: utf-8）: (670, 11)
+2026-03-20 19:22:29,086 - src.data_loader - INFO - 清洗后列名: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke', 'Nexp_per_kN']
+2026-03-20 19:22:29,086 - src.data_loader - INFO - 目标列名映射: 'Nexp/kN' → 'Nexp_per_kN'
+2026-03-20 19:22:29,086 - src.data_loader - INFO - =======================================================
+2026-03-20 19:22:29,086 - src.data_loader - INFO -   数据集形状: (670, 11)
+2026-03-20 19:22:29,086 - src.data_loader - INFO -   缺失值: 无
+2026-03-20 19:22:29,096 - src.data_loader - INFO - 
+          R_e_out     t_e_out     R_e_in      t_e_in           e     fy_out        fy_in      fc_ref            L          ke   Nexp_per_kN
+count  670.000000  670.000000  670.00000  670.000000  670.000000  670.00000   670.000000  670.000000   670.000000  670.000000    670.000000
+mean    97.982370    4.609230   49.39160    3.797423    1.368657  374.31594   387.041075   49.952493   780.369104    0.672686   2925.689776
+std     45.855065    2.978963   37.89855    2.616143    7.002129  117.56728   129.102444   24.096883   481.477650    0.437444   2703.510434
+min     36.370000    0.590000    6.25000    0.550000    0.000000  200.00000   193.300000   18.700000   230.000000    0.000000    228.000000
+25%     65.102250    3.000000   26.00000    2.780000    0.000000  286.00000   324.000000   37.500000   450.000000    0.160117   1054.000000
+50%     86.470000    3.430907   36.10000    3.000000    0.000000  336.54000   356.600000   40.400000   600.000000    1.000000   1880.425000
+75%    120.037000    5.666246   64.08500    4.000000    0.000000  439.30000   414.065000   52.940000   900.000000    1.000000   3512.750000
+max    278.710000   15.797308  232.87000   15.797308   60.000000  788.00000  1029.000000  141.000000  3000.000000    1.000000  15850.000000
+2026-03-20 19:22:29,096 - src.data_loader - INFO - =======================================================
+2026-03-20 19:22:29,097 - src.data_loader - INFO - 特征数量: 10，样本数: 670
+2026-03-20 19:22:29,097 - src.data_loader - INFO - 特征列: ['R_e_out', 't_e_out', 'R_e_in', 't_e_in', 'e', 'fy_out', 'fy_in', 'fc_ref', 'L', 'ke']
+2026-03-20 19:22:29,097 - src.data_loader - INFO - 目标列统计: min=228.00, max=15850.00, mean=2925.69, std=2703.51
+2026-03-20 19:22:29,097 - __main__ - INFO - 训练集: 536 条 | 测试集: 134 条
+2026-03-20 19:22:29,100 - src.preprocessor - INFO - 特征标准化完成：10 个特征，均值范围 [0.655, 782.512]
+2026-03-20 19:22:29,100 - src.preprocessor - INFO - 目标变量 log1p 变换：原始范围 [228.0, 15850.0] → 变换后 [5.4337, 9.6710]
+2026-03-20 19:22:29,101 - src.preprocessor - INFO - 预处理器已保存: output/scaler.pkl
+2026-03-20 19:22:29,116 - src.model_trainer - INFO - 使用设备: cuda
+2026-03-20 19:22:29,117 - src.model_trainer - INFO - 从 logs/best_params.json 加载最优参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:22:29,117 - src.model_trainer - INFO - 最终训练参数: {'learning_rate': 0.002223815833683, 'dropout_rate': 0.2531497029232353, 'batch_size': 32, 'weight_decay': 2.300711477010036e-05, 'activation': 'tanh', 'optimizer': 'adam', 'hidden_layers': [256, 256, 256], 'batch_norm': True}
+2026-03-20 19:22:29,117 - src.model_trainer - INFO - ── Fold 1/5 ──────────────────────────
+2026-03-20 19:22:33,605 - src.model_trainer - INFO - Epoch   100 | Train=0.177663 | Val=0.059197 | LR=2.22e-03
+2026-03-20 19:22:36,635 - src.model_trainer - INFO - Epoch   200 | Train=0.130619 | Val=0.041074 | LR=1.11e-03
+2026-03-20 19:22:39,674 - src.model_trainer - INFO - Epoch   300 | Train=0.139078 | Val=0.027165 | LR=2.78e-04
+2026-03-20 19:22:41,127 - src.model_trainer - INFO - 早停于 epoch 347，最佳验证 MSE=0.020855
+2026-03-20 19:22:41,129 - src.model_trainer - INFO - Fold 1 | RMSE=698.39 kN | COV=0.1638
+2026-03-20 19:22:41,129 - src.model_trainer - INFO - ── Fold 2/5 ──────────────────────────
+2026-03-20 19:22:44,168 - src.model_trainer - INFO - Epoch   100 | Train=0.231058 | Val=0.027158 | LR=2.22e-03
+2026-03-20 19:22:47,221 - src.model_trainer - INFO - Epoch   200 | Train=0.130332 | Val=0.013548 | LR=5.56e-04
+2026-03-20 19:22:50,549 - src.model_trainer - INFO - Epoch   300 | Train=0.145243 | Val=0.011037 | LR=1.39e-04
+2026-03-20 19:22:53,419 - src.model_trainer - INFO - 早停于 epoch 382，最佳验证 MSE=0.010276
+2026-03-20 19:22:53,420 - src.model_trainer - INFO - Fold 2 | RMSE=314.08 kN | COV=0.1013
+2026-03-20 19:22:53,420 - src.model_trainer - INFO - ── Fold 3/5 ──────────────────────────
+2026-03-20 19:22:56,894 - src.model_trainer - INFO - Epoch   100 | Train=0.192514 | Val=0.036757 | LR=2.22e-03
+2026-03-20 19:22:59,953 - src.model_trainer - INFO - Epoch   200 | Train=0.151244 | Val=0.040941 | LR=5.56e-04
+2026-03-20 19:23:00,243 - src.model_trainer - INFO - 早停于 epoch 210，最佳验证 MSE=0.031414
+2026-03-20 19:23:00,245 - src.model_trainer - INFO - Fold 3 | RMSE=375.97 kN | COV=0.2207
+2026-03-20 19:23:00,245 - src.model_trainer - INFO - ── Fold 4/5 ──────────────────────────
+2026-03-20 19:23:03,289 - src.model_trainer - INFO - Epoch   100 | Train=0.226638 | Val=0.043620 | LR=2.22e-03
+2026-03-20 19:23:06,402 - src.model_trainer - INFO - Epoch   200 | Train=0.125401 | Val=0.015870 | LR=1.11e-03
+2026-03-20 19:23:09,582 - src.model_trainer - INFO - Epoch   300 | Train=0.152915 | Val=0.015371 | LR=5.56e-04
+2026-03-20 19:23:12,076 - src.model_trainer - INFO - 早停于 epoch 378，最佳验证 MSE=0.011922
+2026-03-20 19:23:12,079 - src.model_trainer - INFO - Fold 4 | RMSE=413.66 kN | COV=0.1110
+2026-03-20 19:23:12,079 - src.model_trainer - INFO - ── Fold 5/5 ──────────────────────────
+2026-03-20 19:23:15,376 - src.model_trainer - INFO - Epoch   100 | Train=0.171147 | Val=0.035618 | LR=2.22e-03
+2026-03-20 19:23:18,648 - src.model_trainer - INFO - Epoch   200 | Train=0.137799 | Val=0.035895 | LR=1.11e-03
+2026-03-20 19:23:21,829 - src.model_trainer - INFO - Epoch   300 | Train=0.114799 | Val=0.025141 | LR=2.78e-04
+2026-03-20 19:23:23,584 - src.model_trainer - INFO - 早停于 epoch 353，最佳验证 MSE=0.017809
+2026-03-20 19:23:23,586 - src.model_trainer - INFO - Fold 5 | RMSE=323.62 kN | COV=0.1409
+2026-03-20 19:23:23,586 - src.model_trainer - INFO - KFold 平均 | RMSE=425.14 | COV=0.1475
+2026-03-20 19:23:23,589 - src.model_trainer - INFO - 模型已保存: output/best_model.pth
+2026-03-20 19:23:23,592 - __main__ - INFO - 
+【测试集评估（原始尺度 kN）】
+2026-03-20 19:23:23,593 - src.evaluator - INFO - ====================================================
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   评估结果 [Test]
+2026-03-20 19:23:23,593 - src.evaluator - INFO - ====================================================
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   R²          : 0.973250
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   RMSE        : 370.4787
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   MAE         : 208.3652
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   MAPE        : 8.6887 %
+2026-03-20 19:23:23,593 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   COV         : 0.105578  ← 核心工程指标
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   μ_ξ (均值比): 1.036639  (理想≈1.0)
+2026-03-20 19:23:23,593 - src.evaluator - INFO -   σ_ξ (标准差): 0.109446
+2026-03-20 19:23:23,593 - src.evaluator - INFO - ====================================================
+2026-03-20 19:23:23,593 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:23:23,594 - __main__ - INFO - 
+【训练集评估（原始尺度 kN）】
+2026-03-20 19:23:23,594 - src.evaluator - INFO - ====================================================
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   评估结果 [Train]
+2026-03-20 19:23:23,594 - src.evaluator - INFO - ====================================================
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   R²          : 0.979303
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   RMSE        : 401.4758
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   MAE         : 220.2316
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   MAPE        : 8.9516 %
+2026-03-20 19:23:23,594 - src.evaluator - INFO - ────────────────────────────────────────────────────
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   COV         : 0.129476  ← 核心工程指标
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   μ_ξ (均值比): 1.041458  (理想≈1.0)
+2026-03-20 19:23:23,594 - src.evaluator - INFO -   σ_ξ (标准差): 0.134844
+2026-03-20 19:23:23,594 - src.evaluator - INFO - ====================================================
+2026-03-20 19:23:23,594 - src.evaluator - INFO - 报告已追加至: output/evaluation_report.txt
+2026-03-20 19:23:23,594 - __main__ - INFO - 计算排列重要性（Permutation Importance）...
+2026-03-20 19:23:24,049 - matplotlib.font_manager - INFO - generated new fontManager
+2026-03-20 19:23:24,164 - src.visualizer - INFO - 图表已保存: output\pred_vs_true_test.png
+2026-03-20 19:23:24,377 - src.visualizer - INFO - 图表已保存: output\residuals.png
+2026-03-20 19:23:24,497 - src.visualizer - INFO - 图表已保存: output\feature_importance.png
+2026-03-20 19:23:25,468 - src.visualizer - INFO - 图表已保存: output\training_curves.png
+2026-03-20 19:23:25,595 - src.visualizer - INFO - 图表已保存: output\ratio_distribution.png
+2026-03-20 19:23:25,595 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:23:25,595 - __main__ - INFO -   KFold 各折汇总
+2026-03-20 19:23:25,595 - __main__ - INFO - ==============================================================
+2026-03-20 19:23:25,595 - __main__ - INFO -   Fold 1 | RMSE=698.39 kN | COV=0.1638
+2026-03-20 19:23:25,595 - __main__ - INFO -   Fold 2 | RMSE=314.08 kN | COV=0.1013
+2026-03-20 19:23:25,595 - __main__ - INFO -   Fold 3 | RMSE=375.97 kN | COV=0.2207
+2026-03-20 19:23:25,595 - __main__ - INFO -   Fold 4 | RMSE=413.66 kN | COV=0.1110
+2026-03-20 19:23:25,595 - __main__ - INFO -   Fold 5 | RMSE=323.62 kN | COV=0.1409
+2026-03-20 19:23:25,595 - __main__ - INFO -   平均     | RMSE=425.14 kN | COV=0.1475
+2026-03-20 19:23:25,595 - __main__ - INFO - 
+==============================================================
+2026-03-20 19:23:25,595 - __main__ - INFO -   训练完成！
+2026-03-20 19:23:25,595 - __main__ - INFO -   Test R²   : 0.973250
+2026-03-20 19:23:25,595 - __main__ - INFO -   Test RMSE : 370.48 kN
+2026-03-20 19:23:25,595 - __main__ - INFO -   Test COV  : 0.105578  ← 工程核心指标
+2026-03-20 19:23:25,595 - __main__ - INFO -   模型保存  : output/best_model.pth
+2026-03-20 19:23:25,595 - __main__ - INFO -   图表保存  : output/
+2026-03-20 19:23:25,595 - __main__ - INFO - ==============================================================
