@@ -5,9 +5,14 @@ train.py — 主训练入口
 完整流程：
   数据加载 → 预处理（特征标准化 + 目标 log1p 变换）
   → KFold 训练 + Optuna 优化 → 原始尺度评估 → 可视化
+
+输出目录：
+  每次完整训练自动创建 output/YYYYMMDD_HHMMSS/ 目录保存所有结果。
+  Optuna 中间过程训练仅写入 logs/training.log，不单独建文件夹。
 """
 import argparse
 import logging
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -18,10 +23,33 @@ from src.data_loader import DataLoader
 from src.evaluator import Evaluator
 from src.model_trainer import ModelTrainer
 from src.preprocessor import Preprocessor
+from src.shap_analyzer import compute_shap_values, save_shap_report
 from src.utils import ensure_dirs, load_config, setup_logging
 from src.visualizer import Visualizer
 
 logger = logging.getLogger(__name__)
+
+
+def _setup_run_dir(cfg: dict) -> str:
+    """
+    创建以训练时间命名的输出目录，并将 config 中所有输出路径
+    重定向到该目录。日志和 Optuna 数据库路径保持不变。
+
+    Returns:
+        run_dir: 本次训练的输出目录路径（字符串）
+    """
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    base_output = cfg.get("paths", {}).get("output_dir", "output")
+    run_dir = str(Path(base_output) / timestamp)
+    Path(run_dir).mkdir(parents=True, exist_ok=True)
+
+    # 覆盖所有"最终输出"相关路径，日志/Optuna 路径不变
+    cfg["paths"]["output_dir"]      = run_dir
+    cfg["paths"]["model_save_path"] = str(Path(run_dir) / "best_model.pth")
+    cfg["paths"]["scaler_path"]     = str(Path(run_dir) / "scaler.pkl")
+    cfg["paths"]["report_path"]     = str(Path(run_dir) / "evaluation_report.txt")
+
+    return run_dir
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,15 +74,16 @@ def main() -> None:
         log_file=log_cfg.get("log_file", "logs/training.log"),
         log_format=log_cfg.get("format"),
     )
+
+    # ── 创建本次训练的时间戳输出目录 ─────────────────────────
+    run_dir = _setup_run_dir(cfg)
+    paths = cfg.get("paths", {})
+    ensure_dirs([paths.get("log_dir", "logs")])
+
     logger.info("=" * 62)
     logger.info("  BP 神经网络训练启动（CFDST 极限承载力预测）")
+    logger.info(f"  本次输出目录: {run_dir}")
     logger.info("=" * 62)
-
-    paths = cfg.get("paths", {})
-    ensure_dirs([
-        paths.get("output_dir", "output"),
-        paths.get("log_dir", "logs"),
-    ])
 
     # ── 2. 加载数据 ───────────────────────────────────────────
     loader = DataLoader(cfg)
@@ -158,7 +187,47 @@ def main() -> None:
     viz.plot_training_history(trainer.training_history_)
     viz.plot_ratio_distribution(y_test_np, y_pred_test, dataset_name="Test")
 
-    # ── 9. KFold 指标汇总 ───────────────────────────────────
+    # ── 9. SHAP 可解释性分析 ─────────────────────────────────
+    logger.info("=" * 62)
+    logger.info("  SHAP 可解释性分析")
+    logger.info("=" * 62)
+    try:
+        shap_values, _ = compute_shap_values(
+            best_model,
+            X_train=X_train,
+            X_explain=X_test,
+            device=device,
+            n_background=min(100, len(X_train)),
+        )
+        # 估算 base_value（背景预测均值，逆变换回 kN）
+        import torch as _torch
+        with _torch.no_grad():
+            bg_pred_log = best_model(
+                _torch.tensor(X_train[:100], dtype=_torch.float32).to(device)
+            ).cpu().numpy()
+        base_value = float(preprocessor.inverse_transform_y(bg_pred_log).mean())
+
+        # 保存 SHAP 文本报告
+        save_shap_report(
+            shap_values, feature_names,
+            paths.get("output_dir", "output") + "/shap_report.txt",
+        )
+
+        # 绘制所有 SHAP 图表
+        viz.plot_shap_summary(shap_values, X_test, feature_names)
+        viz.plot_shap_bar(shap_values, feature_names)
+        viz.plot_shap_waterfall(
+            shap_values, X_test, feature_names,
+            y_pred=y_pred_test, y_true=y_test_np,
+            base_value=base_value,
+        )
+        viz.plot_shap_dependence(shap_values, X_test, feature_names, top_n=4)
+        viz.plot_shap_heatmap(shap_values, feature_names)
+        logger.info("SHAP 分析完成，图表已保存至 output/")
+    except Exception as e:
+        logger.warning(f"SHAP 分析失败（不影响主流程）: {e}")
+
+    # ── 10. KFold 指标汇总 ──────────────────────────────────
     logger.info("\n" + "=" * 62)
     logger.info("  KFold 各折汇总")
     logger.info("=" * 62)

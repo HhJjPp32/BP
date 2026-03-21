@@ -1,11 +1,12 @@
 {
-    "learning_rate": 0.002223815833683,
-    "dropout_rate": 0.2531497029232353,
+    "learning_rate": 0.0029337497722683008,
+    "dropout_rate": 0.2825637992701087,
     "batch_size": 32,
-    "weight_decay": 2.300711477010036e-05,
-    "activation": "tanh",
+    "weight_decay": 0.0009936466844935156,
+    "activation": "leaky_relu",
     "optimizer": "adam",
     "hidden_layers": [
+        256,
         256,
         256,
         256

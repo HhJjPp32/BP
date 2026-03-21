@@ -278,3 +278,217 @@ class Visualizer:
         plt.suptitle("递归特征消除 - 指标变化（肘部图）", fontsize=13)
         plt.tight_layout()
         return self._save(fig, filename)
+
+    # ══════════════════════════════════════════
+    # SHAP 可解释性分析图表（7 ~ 11）
+    # ══════════════════════════════════════════
+
+    # ── 7. SHAP Summary Plot（蜂群图）─────────
+
+    def plot_shap_summary(
+        self,
+        shap_values: np.ndarray,
+        X_explain: np.ndarray,
+        feature_names: List[str],
+        filename: str = "shap_summary.png",
+    ) -> str:
+        """
+        蜂群图：每个点代表一个样本，
+        x 轴为 SHAP 值（正 = 推高预测，负 = 拉低预测），
+        颜色代表特征的原始取值（红高蓝低）。
+        """
+        try:
+            import shap
+        except ImportError:
+            logger.warning("shap 未安装，跳过 Summary Plot")
+            return ""
+
+        # shap.summary_plot 内部自己创建 figure，直接用 plt.gcf() 获取
+        shap.summary_plot(
+            shap_values, X_explain,
+            feature_names=feature_names,
+            show=False,
+            plot_size=(9, max(5, len(feature_names) * 0.45)),
+        )
+        plt.title("SHAP Summary Plot（蜂群图）", fontsize=13)
+        plt.tight_layout()
+        return self._save(plt.gcf(), filename)
+
+    # ── 8. SHAP Bar Plot（全局重要性）──────────
+
+    def plot_shap_bar(
+        self,
+        shap_values: np.ndarray,
+        feature_names: List[str],
+        filename: str = "shap_bar.png",
+    ) -> str:
+        """
+        条形图：每个特征的平均 |SHAP| 值，量化全局重要性。
+        """
+        mean_abs = np.abs(shap_values).mean(axis=0)
+        order = np.argsort(mean_abs)          # 升序（barh 从下到上）
+        sorted_names = [feature_names[i] for i in order]
+        sorted_vals  = mean_abs[order]
+
+        fig, ax = plt.subplots(figsize=(8, max(5, len(feature_names) * 0.45)))
+        colors = plt.cm.RdBu_r(np.linspace(0.2, 0.8, len(sorted_names)))
+        bars = ax.barh(range(len(sorted_names)), sorted_vals,
+                       color=colors, edgecolor="white", alpha=0.9)
+        ax.set_yticks(range(len(sorted_names)))
+        ax.set_yticklabels(sorted_names, fontsize=10)
+        ax.set_xlabel("平均 |SHAP 值|", fontsize=11)
+        ax.set_title("SHAP 全局特征重要性（平均绝对值）", fontsize=12)
+
+        for bar, val in zip(bars, sorted_vals):
+            ax.text(bar.get_width() + max(sorted_vals) * 0.01,
+                    bar.get_y() + bar.get_height() / 2,
+                    f"{val:.4f}", va="center", ha="left", fontsize=9)
+
+        ax.spines[["top", "right"]].set_visible(False)
+        plt.tight_layout()
+        return self._save(fig, filename)
+
+    # ── 9. SHAP Waterfall Plot（单样本分解）────
+
+    def plot_shap_waterfall(
+        self,
+        shap_values: np.ndarray,
+        X_explain: np.ndarray,
+        feature_names: List[str],
+        y_true: np.ndarray,
+        y_pred: np.ndarray,
+        base_value: float,
+        sample_indices: Optional[List[int]] = None,
+        filename_prefix: str = "shap_waterfall",
+    ) -> List[str]:
+        """
+        瀑布图：逐特征拆解单个样本的预测值来源。
+
+        自动选择三个典型样本：
+          - best  : 预测误差最小的样本
+          - worst : 预测误差最大的样本
+          - median: 误差处于中位数的样本
+        """
+        try:
+            import shap
+        except ImportError:
+            logger.warning("shap 未安装，跳过 Waterfall Plot")
+            return []
+
+        errors = np.abs(y_pred - y_true)
+        sorted_err_idx = np.argsort(errors)
+        auto_indices = {
+            "最佳预测":   int(sorted_err_idx[0]),
+            "中位预测":   int(sorted_err_idx[len(sorted_err_idx) // 2]),
+            "最差预测":   int(sorted_err_idx[-1]),
+        }
+        if sample_indices is not None:
+            auto_indices = {f"样本{i}": i for i in sample_indices}
+
+        saved = []
+        for label, idx in auto_indices.items():
+            # 构造 shap.Explanation 对象
+            exp = shap.Explanation(
+                values=shap_values[idx],
+                base_values=base_value,
+                data=X_explain[idx],
+                feature_names=feature_names,
+            )
+            # shap.waterfall_plot 内部自己创建 figure
+            shap.waterfall_plot(exp, show=False)
+            plt.title(
+                f"SHAP Waterfall — {label}\n"
+                f"真实值={y_true[idx]:.1f} kN  预测值={y_pred[idx]:.1f} kN  "
+                f"误差={y_pred[idx]-y_true[idx]:+.1f} kN",
+                fontsize=11,
+            )
+            plt.tight_layout()
+            fname = f"{filename_prefix}_{label.replace('预测','')}.png"
+            saved.append(self._save(plt.gcf(), fname))
+        return saved
+
+    # ── 10. SHAP Dependence Plot（依赖图）──────
+
+    def plot_shap_dependence(
+        self,
+        shap_values: np.ndarray,
+        X_explain: np.ndarray,
+        feature_names: List[str],
+        top_n: int = 4,
+        filename: str = "shap_dependence.png",
+    ) -> str:
+        """
+        依赖图：展示前 top_n 个重要特征的 SHAP 值
+        随特征值变化的趋势，颜色由交互特征着色。
+        """
+        mean_abs = np.abs(shap_values).mean(axis=0)
+        top_idx  = np.argsort(mean_abs)[::-1][:top_n]
+
+        cols = 2
+        rows = (top_n + 1) // 2
+        fig, axes = plt.subplots(rows, cols, figsize=(cols * 6, rows * 4))
+        axes = np.array(axes).flatten()
+
+        for plot_i, feat_i in enumerate(top_idx):
+            ax = axes[plot_i]
+            feat_name = feature_names[feat_i]
+            x_vals    = X_explain[:, feat_i]
+            s_vals    = shap_values[:, feat_i]
+
+            # 用第二重要特征着色
+            color_feat_i = top_idx[1] if plot_i != 1 else top_idx[0]
+            color_vals   = X_explain[:, color_feat_i]
+
+            sc = ax.scatter(x_vals, s_vals,
+                            c=color_vals, cmap="coolwarm",
+                            alpha=0.7, s=30, edgecolors="none")
+            ax.axhline(0, color="gray", linestyle="--", linewidth=1)
+            ax.set_xlabel(feat_name, fontsize=10)
+            ax.set_ylabel("SHAP 值", fontsize=10)
+            ax.set_title(f"{feat_name}  的 SHAP 依赖图", fontsize=11)
+            plt.colorbar(sc, ax=ax,
+                         label=feature_names[color_feat_i], pad=0.01)
+
+        for j in range(top_n, len(axes)):
+            axes[j].set_visible(False)
+
+        plt.suptitle(f"SHAP Dependence Plot（前 {top_n} 个重要特征）",
+                     fontsize=13)
+        plt.tight_layout()
+        return self._save(fig, filename)
+
+    # ── 11. SHAP Heatmap（热力图）──────────────
+
+    def plot_shap_heatmap(
+        self,
+        shap_values: np.ndarray,
+        feature_names: List[str],
+        max_samples: int = 100,
+        filename: str = "shap_heatmap.png",
+    ) -> str:
+        """
+        热力图：行=样本，列=特征，颜色=SHAP值，
+        直观展示每个特征对不同样本的影响模式。
+        """
+        # 按预测贡献总和排序样本
+        n = min(max_samples, len(shap_values))
+        total = shap_values[:n].sum(axis=1)
+        order = np.argsort(total)
+        sv_sorted = shap_values[order][:n]
+
+        # 按全局重要性排列特征列
+        feat_order = np.argsort(np.abs(sv_sorted).mean(axis=0))[::-1]
+        sv_plot    = sv_sorted[:, feat_order]
+        feat_names_sorted = [feature_names[i] for i in feat_order]
+
+        vmax = np.percentile(np.abs(sv_plot), 95)
+        fig, ax = plt.subplots(figsize=(max(8, len(feature_names) * 0.9), 7))
+        im = ax.imshow(sv_plot.T, aspect="auto",
+                       cmap="RdBu_r", vmin=-vmax, vmax=vmax)
+        ax.set_yticks(range(len(feat_names_sorted)))
+        ax.set_yticklabels(feat_names_sorted, fontsize=10)
+        ax.set_xlabel("样本（按 SHAP 总贡献排序）", fontsize=11)
+        ax.set_title("SHAP 热力图（特征 × 样本）", fontsize=12)
+        plt.colorbar(im, ax=ax, label="SHAP 值", shrink=0.8)
+        plt.tight_layout()
+        return self._save(fig, filename)
