@@ -5,7 +5,8 @@
       "Bash(python train.py)",
       "Bash(where python:*)",
       "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
-      "Bash(\"C:\\\\Users\\\\Lenovo\\\\miniconda3\\\\envs\\\\shujukuzhuanhua\\\\python.exe\" train.py)"
+      "Bash(\"C:\\\\Users\\\\Lenovo\\\\miniconda3\\\\envs\\\\shujukuzhuanhua\\\\python.exe\" train.py)",
+      "Bash(\"C:\\\\Users\\\\Lenovo\\\\miniconda3\\\\envs\\\\shujukuzhuanhua\\\\python.exe\" -m pip install shap)"
     ]
   }
 }
