@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import pandas as pd; df=pd.read_csv\\('D:/AI_study/shujukuzhuanhua/training_data_alter.csv'\\); print\\(list\\(df.columns\\)\\); print\\(df.shape\\)\")",
+      "Bash(del \"d:\\\\AI_study\\\\shujukuzhuanhua\\\\BP\\\\data\\\\processed_data.csv\")"
+    ]
+  }
+}

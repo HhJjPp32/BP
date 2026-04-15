@@ -6,9 +6,9 @@
 
 paths:
   # 数据路径（绝对路径，指向实际数据文件）
-  raw_data: "D:/AI_study/shujukuzhuanhua/training_data_BP.csv"
+  raw_data: "D:/AI_study/shujukuzhuanhua/training_data_alter.csv"
   data_dir: "data"
-  processed_data: "data/processed_data.csv"
+  processed_data: "data/processed_data_alter.csv"
   log_dir: "logs"
   output_dir: "output"
   model_save_path: "output/best_model.pth"
@@ -18,7 +18,7 @@ paths:
   report_path: "output/evaluation_report.txt"
 
 data:
-  target_column: "Nexp/kN"        # 实际目标列名（含斜杠）
+  target_column: "Nexp"        # 实际目标列名（含斜杠）
   feature_columns: []             # 空列表 = 自动检测（排除 target）
   test_size: 0.2
   random_state: 42
